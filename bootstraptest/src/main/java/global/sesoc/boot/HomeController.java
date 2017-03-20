@@ -34,9 +34,20 @@ public class HomeController {
 		return "hicu";
 	}
 	
-	@RequestMapping(value = "/testing", method = RequestMethod.GET)
+	@RequestMapping(value = "/shared", method = RequestMethod.GET)
+	public String shared() {
+		return "shared";
+	}
+	
+	@RequestMapping(value = "/howto", method = RequestMethod.GET)
+	public String howto() {
+		return "howto";
+	}
+	
+	
+	@RequestMapping(value = "/aboutus", method = RequestMethod.GET)
 	public String testing() {
-		return "testing";
+		return "aboutus";
 	}
 	
 }

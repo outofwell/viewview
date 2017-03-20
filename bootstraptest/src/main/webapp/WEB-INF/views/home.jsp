@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/main.min.css">
 	<script src='resources/js/jaudio.min.js'></script>
 
+
 </head>
 
 <body class="index-page">
@@ -55,10 +56,10 @@
 	    		<li class="active"><a href=".">MAIN</a></li>
             	<li><a href="comu">COMU</a></li>
               	<li><a href="hicu">HICU</a></li>
-              	<li><a href="#mypage">MyPage</a></li>
-              	<li><a href="#shared">Shared</a></li>
-                <li><a href="#howto">HOW TO</a></li>
-              	<li><a href="#aboutus">ABOUT US</a></li>
+              	<li><a href="mypage">MyPage</a></li>
+              	<li><a href="shared">Shared</a></li>
+                <li><a href="howto">HOW TO</a></li>
+              	<li><a href="aboutus">ABOUT US</a></li>
               	<li><a href="#"></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login
@@ -105,7 +106,8 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="brand">
 						<h1>CO-MU</h1>
-						<h4>A New Music Creator</h4>
+						<h4>A New Music Creator</h4><br>
+						<h3>LOGIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOIN</h3>
 					</div>
 				</div>
 			</div>

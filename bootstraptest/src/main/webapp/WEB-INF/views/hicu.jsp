@@ -27,6 +27,12 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/main.min.css">
 	<script src='resources/js/jaudio.min.js'></script>
 
+	<style>
+		.main-raised {
+			margin: -550px 30px 0px;
+		}
+	</style>
+
 </head>
 
 <body class="index-page">
@@ -55,10 +61,10 @@
 				    		<li><a href=".">MAIN</a></li>
 			            	<li><a href="comu">COMU</a></li>
                     		<li class="active"><a href="hicu">HICU</a></li>
-                    		<li><a href="#mypage">MyPage</a></li>
-                    		<li><a href="#shared">Shared</a></li>
-                            <li><a href="#howto">HOW TO</a></li>
-                    		<li><a href="#aboutus">ABOUT US</a></li>
+                    		<li><a href="mypage">MyPage</a></li>
+                    		<li><a href="shared">Shared</a></li>
+                            <li><a href="howto">HOW TO</a></li>
+                    		<li><a href="aboutus">ABOUT US</a></li>
                     		<li><a href="#"></a></li>
                         	<li class="dropdown">
                         		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login
@@ -107,56 +113,18 @@
 	    	<div class="container">
 	    		<div class="row">
 					<div class="col-md-6">
-					
-						<textarea class="form-control" placeholder="input text" rows="3"></textarea>
-						<button class="btn btn-primary">Primary</button>
+						<h3>TEXT</h3><br><br><center>
+						<img src="resources/assets/img/mic.png"><br><br>
+						<hr>
+						<textarea class="form-control" placeholder="Input text" rows="3"></textarea>
 						
-						<textarea class="form-control" placeholder="coding area" rows="10"></textarea>
-						
-						<button class="btn btn-primary">Primary</button>
-						
-						<!-- start music player -->    	
-						<div class='jAudio'>	<!-- 오디오 -->
-								<audio></audio>
-								<div class='jAudio--ui'>
-						        <div class='jAudio--thumb'></div>
-						        <div class='jAudio--status-bar'>
-						          <div class='jAudio--details'></div>
-						          <div class='jAudio--volume-bar'></div>
-						          
-						          <div class='jAudio--progress-bar'>
-						            <div class='jAudio--progress-bar-wrapper'>
-						              <div class='jAudio--progress-bar-played'>
-						                <span class='jAudio--progress-bar-pointer'></span>
-						              </div>
-						            </div>
-						          </div>
-						
-						          <div class='jAudio--time'>
-						            <span class='jAudio--time-elapsed'>00:00</span>
-						            <span class='jAudio--time-total'>00:00</span>
-						          </div>
-						
-						        </div>
-						
-						      </div>
-					
-						      <div class='jAudio--playlist'>
-						      </div>
-						
-						      <div class='jAudio--controls'>
-						        <ul>
-						          <li><button class='jAudio--control jAudio--control-prev' data-action='prev'><span></span></button></li>
-						          <li><button class='jAudio--control jAudio--control-play' data-action='play'><span></span></button></li>
-						          <li><button class='jAudio--control jAudio--control-next' data-action='next'><span></span></button></li>
-						        </ul>
-						      </div>
-					
-						</div>
-					    <!-- end music player -->
+						<button class="btn btn-primary">▶</button>
+						</center>
 					</div>
 			    	<div class="col-md-6">
-			    		2번째 칸!!!!
+			    		<h3>PLAY</h3>
+			    		<textarea class="form-control" placeholder="Code Result" rows="8"></textarea>
+
 					</div>
 				</div>
 

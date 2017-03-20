@@ -27,6 +27,12 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/main.min.css">
 	<script src='resources/js/jaudio.min.js'></script>
 
+	<style>
+		.main-raised {
+			margin: -550px 30px 0px;
+		}
+	</style>
+
 </head>
 
 <body class="index-page">
@@ -55,10 +61,10 @@
 	    					<li><a href=".">MAIN</a></li>
 			            	<li class="active"><a href="comu">COMU</a></li>
                     		<li><a href="hicu">HICU</a></li>
-                    		<li><a href="#mypage">MyPage</a></li>
-                    		<li><a href="#shared">Shared</a></li>
-                            <li><a href="#howto">HOW TO</a></li>
-                    		<li><a href="#aboutus">ABOUT US</a></li>
+                    		<li><a href="mypage">MyPage</a></li>
+                    		<li><a href="shared">Shared</a></li>
+                            <li><a href="howto">HOW TO</a></li>
+                    		<li><a href="aboutus">ABOUT US</a></li>
                     		<li><a href="#"></a></li>
                         	<li class="dropdown">
                         		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login
@@ -131,6 +137,9 @@
 					</div>
 			    	<div class="col-md-6">	<!-- 오른쪽 -->
 			    	<h3>PLAY</h3>
+			    	<div><br><br><br><br>재생 칸<br><br><br><br><br><br><br><br></div>
+			    	<button class="btn btn-primary">Load</button>
+					<button class="btn btn-primary">Save</button>
 					</div>
 				</div>
 
