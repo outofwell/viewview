@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- global.sesoc.boot.vo.User ==> User (별칭 부여) -->
+<mapper namespace="global.sesoc.boot.dao.UserDAO">
+	<insert id="insert" parameterType="User">
+		INSERT INTO cm_user
+		VALUES
+		(#{id}, #{email}, #{password})
+	</insert>
+</mapper>
