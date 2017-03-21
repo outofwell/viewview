@@ -69,23 +69,25 @@
 				<li>
 					<div class="col-sm-12">
 						<div class="content">
+						<form class="form" method="post" action="login">
 							<div class="input-group">
 									<span class="input-group-addon">
 										<i class="material-icons">face</i>
 									</span>
-									<input type="text" class="form-control" placeholder="ID">
+									<input type="text" class="form-control" placeholder="ID" name="id">
 							</div>
 							<div class="input-group">
 									<span class="input-group-addon">
 										<i class="material-icons">lock_outline</i>
 									</span>
-									<input type="password" placeholder="Password" class="form-control" />
+									<input type="password" placeholder="Password" class="form-control" name="password" />
 							</div>
 						</div>
 						<div class="footer text-center">
 								<a href="#pablo" class="btn btn-simple btn-primary btn-lg">
 									<button class="btn btn-primary">LOGIN</button>
 								</a>
+								</form>
 								<hr>
 								<a href="#pablo" class="btn btn-simple btn-primary btn-lg">
 									<button class="btn btn-primary btn-simple" data-toggle="modal" data-target="#joinModal">JOIN</button><button class="btn btn-primary btn-simple">FIND</button>
