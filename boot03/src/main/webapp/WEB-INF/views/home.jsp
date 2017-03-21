@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,12 +70,13 @@
 				<li>
 					<div class="col-sm-12">
 						<div class="content">
+						<c:if test="${empty loginId}">
 						<form class="form" method="post" action="login">
 							<div class="input-group">
 									<span class="input-group-addon">
 										<i class="material-icons">face</i>
 									</span>
-									<input type="text" class="form-control" placeholder="ID" name="id">
+									<input type="text" class="form-control" placeholder="ID" name="userid">
 							</div>
 							<div class="input-group">
 									<span class="input-group-addon">
@@ -93,6 +95,14 @@
 									<button class="btn btn-primary btn-simple" data-toggle="modal" data-target="#joinModal">JOIN</button><button class="btn btn-primary btn-simple">FIND</button>
 								</a>
 						</div>
+						</c:if>
+						<c:if test="${not empty loginId}">
+						<div class="footer text-center">
+								<a href="#pablo" class="btn btn-simple btn-primary btn-lg">
+									<button class="btn btn-primary">LOGOUT</button>
+								</a>
+						</div>
+						</c:if>
 					</div>
 				</li>
 			</ul>
@@ -160,7 +170,7 @@
 									<span class="input-group-addon">
 										<i class="material-icons">face</i>
 									</span>
-									<input type="text" class="form-control" placeholder="ID" name="id">
+									<input type="text" class="form-control" placeholder="ID" name="userid">
 								</div>
 
 								<div class="input-group">
