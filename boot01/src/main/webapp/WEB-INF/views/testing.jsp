@@ -7,198 +7,349 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-<style>
-body{margin-top:20px;}
+<style>$red: #FF0000;
+$white: #FFFFFF;
+$green: #1abc9c;
+$grey: #888888;
+.block {
+  background: #f2f2f2;
+  position: relative;
+  padding: 15px;
+  border: 1px solid #ccc;
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+}
 
-.panel-title a {
-    display: block;
-    position: relative;
-    padding: 10px 60px 10px 15px;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #6d7194;
+.modifier {
+  float: right;
+  margin-left: 8px;
+  font-size: 14px;
 }
-a:hover{
-    text-decoration:none;    
+
+.action {
+  color: $green;
 }
-.drop-accordion .panel-default {
-    overflow: hidden;
-	border: 0;
-	border-radius: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
+
+.edit {
+  color: $grey;
 }
-.drop-accordion .panel-heading {
-	overflow: hidden;
-	margin-bottom: 5px;
-	padding: 0;
-	border: 1px solid #d9d7d7;
-	background: #fafafa;
-	border-radius: 0;
+
+.column-selector {
+  position: relative;
 }
-.leaf-ui .drop-accordion .panel-heading,
-.circlus-ui .drop-accordion .panel-heading {
-	border-radius: 4px;
+
+.remove {
+  color: $red;
 }
-.panel-title a {
-	display: block;
-	position: relative;
-	padding: 10px 60px 10px 15px;
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 1.6;
-	color: #6d7194;
+
+.column-option {
+  float: left;
 }
-.panel-title span {
-	
+
+.dropdown-menu {
+  top: inherit;
 }
-.panel-title .expand-icon-wrap {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	border-left: 1px solid #d9d7d7;
-	font-size: 24px;
-	line-height: 46px;
-	color: #03C6FE;
+
+.blocks {
+  margin-bottom: 0;
 }
-.expand-icon-wrap:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
+
+.panel {
+  border-radius: 0;
 }
-.panel-title .expand-icon {
-	padding: 0 18px;
-	vertical-align: middle;
+
+.row > .panel {
+  background-color: #f2f2f2;
 }
-.panel-title .expand-icon:before {
-	content: "\f055";
+
+.builder {
+  padding: 20px;
 }
-.drop-accordion .panel-body {
-	position: relative;
-	border: 1px solid #d9d7d7;
+
+.block-placeholder {
+  background: #DADADA;
+  position: relative;
 }
-.circlus-ui .drop-accordion .panel-body,
-.leaf-ui .drop-accordion .panel-body {
-	border-radius: 4px;
+
+.block-placeholder:after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background-color: #FFF;
 }
-.panel-body-icon {
-	width: 75px;
-	float: left;
-	padding: 10px;
-}
-.panel-body-icon i {
-	font-size: 45px;
-	color: #03C6FE;
-}
-.drop-accordion .tab-collapsed {
-	border: transparent;
-	background: #03C6FE;
-	-webkit-transition: .5s;
-	-o-transition: .5s;
-	transition: .5s;
-}
-.tab-collapsed a {
-	color: #fff;
-}
-.tab-collapsed .expand-icon-wrap {
-	border-color: #fff;
-	color: #fff;
-}
-.tab-collapsed .expand-icon:before {
-	content: "\f056";
-}
+
 </style>
 
 </head>
 <body>
+<div class="builder">
+  <div class="container">
+    <div class="builder-toolbar">
+      <div class="row-add">
+        <i class="fa fa-plus-circle"></i>
+      </div>
+    </div>
+  </div>
+  <div class="builder-body container">
+    <div class="row">
+      <div class="row-toolbar unsortable">
 
-<div class="container bootstrap snippet">
-    <div class="div">
-        <div class="col-sm-7">
-            <div class="panel-group drop-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading tab-collapsed" role="tab" id="headingOne">
-                      <h4 class="panel-title">
-                        <a class="collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            App benifits tittle one goes here
-                            <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
-                        <div class="panel-body">
-                            <div class="panel-body-icon"><i class="fa fa-magic"></i></div>
-                            Epsum factorial non deposit quid pro quo hic escorol. Olypian rrels et gorilla congolium sic ad Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                            <a class="collapse-controle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                App benifits tittle two goes here
-                                <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
-                        <div class="panel-body">
-                            <div class="panel-body-icon"><i class="fa fa-crop"></i></div>
-                            Epsum factorial non deposit quid pro quo hic escorol. Olypian rrels et gorilla congolium sic ad Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            App benifits tittle three goes here
-                            <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
-                        <div class="panel-body">
-                            <div class="panel-body-icon"><i class="fa fa-cogs"></i></div>
-                            Epsum factorial non deposit quid pro quo hic escorol. Olypian rrels et gorilla congolium sic ad Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a class="collapsed collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            App benifits tittle four goes here
-                            <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour" aria-expanded="false">
-                        <div class="panel-body">
-                            <div class="panel-body-icon"><i class="fa fa-coffee"></i></div>
-                            Epsum factorial non deposit quid pro quo hic escorol. Olypian rrels et gorilla congolium sic ad Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /#accordion -->
+        <div class="column-selector">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-columns"></i></button>
+          <ul class="dropdown-menu row-columns dropdown">
+            <li class="column-option" data-split="1">12</li>
+            <li class="column-option" data-split="2,2">6/6</li>
+            <li class="column-option" data-split="3,3,3">4/4/4</li>
+          </ul>
         </div>
-	</div>
+        <div class="row-actions pull-right">
+          <div class="remove remove-row">
+            <i class="fa fa-times"></i>
+          </div>
+          <div class="action copy-row">
+            <i class="fa fa-repeat"></i>
+          </div>
+          <div class="edit edit-row">
+            <i class="fa fa-cog"></i>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default panel-body sortable">
+        <div class="column-container">
+          <div class="col-xs-6 column sortable">
+            <div class="column-toolbar">
+              <div class="block-add">
+                <i class="fa fa-plus-circle"></i>
+              </div>
+            </div>
+            <div class="blocks panel panel-default panel-body">
+              <div class="block clearfix">
+                <div class="block-actions pull-right">
+                  <div class="remove modifier remove-block">
+                    <i class="fa fa-times"></i>
+                  </div>
+                  <div class="action modifier copy-block">
+                    <i class="fa fa-repeat"></i>
+                  </div>
+                  <div class="edit modifier edit-block">
+                    <i class="fa fa-pencil"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 column sortable">
+            <div class="column-toolbar">
+              <div class="block-add">
+                <i class="fa fa-plus-circle"></i>
+              </div>
+            </div>
+            <div class="blocks panel panel-default panel-body">
+              <div class="block clearfix">
+                <div class="block-actions pull-right">
+                  <div class="remove modifier remove-block">
+                    <i class="fa fa-times"></i>
+                  </div>
+                  <div class="action modifier copy-block">
+                    <i class="fa fa-repeat"></i>
+                  </div>
+                  <div class="edit modifier edit-block">
+                    <i class="fa fa-pencil"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="panel panel-default panel-body sortable">
+        <div class="col-xs-6 column sortable">
+          <div class="column-toolbar">
+            <div class="block-add">
+              <i class="fa fa-plus-circle"></i>
+            </div>
+          </div>
+          <div class="blocks panel panel-default panel-body">
+            <div class="block clearfix">
+              <div class="block-actions pull-right">
+                <div class="remove modifier remove-block">
+                  <i class="fa fa-times"></i>
+                </div>
+                <div class="action modifier copy-block">
+                  <i class="fa fa-repeat"></i>
+                </div>
+                <div class="edit modifier edit-block">
+                  <i class="fa fa-pencil"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 column sortable">
+          <div class="column-toolbar">
+            <div class="block-add">
+              <i class="fa fa-plus-circle"></i>
+            </div>
+          </div>
+          <div class="blocks panel panel-default panel-body">
+            <div class="block clearfix">
+              <div class="block-actions pull-right">
+                <div class="remove modifier remove-block">
+                  <i class="fa fa-times"></i>
+                </div>
+                <div class="action modifier copy-block">
+                  <i class="fa fa-repeat"></i>
+                </div>
+                <div class="edit modifier edit-block">
+                  <i class="fa fa-pencil"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+
 <script>
-$(function(){
-    $('.panel-heading').click(function(e) {
-        $('.panel-heading').removeClass('tab-collapsed');
-        var collapsCrnt = $(this).find('.collapse-controle').attr('aria-expanded');
-        if (collapsCrnt != 'true') {
-            $(this).addClass('tab-collapsed');
-        }
-    });
-})
+$(".row").sortable({
+	  axis: "x",
+	  items: ".column"
+	});
+	$(".container").sortable({
+	  axis: "y",
+	  items: ".row",
+	  placeholder: 'block-placeholder',
+	  revert: 150,
+	  start: function(e, ui) {
+
+	    placeholderHeight = ui.item.outerHeight();
+	    ui.placeholder.height(placeholderHeight + 15);
+	    $('<div class="block-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
+
+	  },
+	  change: function(event, ui) {
+
+	    ui.placeholder.stop().height(0).animate({
+	      height: ui.item.outerHeight() + 15
+	    }, 300);
+
+	    placeholderAnimatorHeight = parseInt($(".block-placeholder-animator").attr("data-height"));
+
+	    $(".block-placeholder-animator").stop().height(placeholderAnimatorHeight + 15).animate({
+	      height: 0
+	    }, 300, function() {
+	      $(this).remove();
+	      placeholderHeight = ui.item.outerHeight();
+	      $('<div class="block-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
+	    });
+
+	  },
+	  stop: function(e, ui) {
+
+	    $(".block-placeholder-animator").remove();
+
+	  },
+	});
+
+	// Block Controls
+	$(".blocks").sortable({
+	  connectWith: '.blocks',
+	  placeholder: 'block-placeholder',
+	  revert: 150,
+	  start: function(e, ui) {
+
+	    placeholderHeight = ui.item.outerHeight();
+	    ui.placeholder.height(placeholderHeight + 15);
+	    $('<div class="block-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
+
+	  },
+	  change: function(event, ui) {
+
+	    ui.placeholder.stop().height(0).animate({
+	      height: ui.item.outerHeight() + 15
+	    }, 300);
+
+	    placeholderAnimatorHeight = parseInt($(".block-placeholder-animator").attr("data-height"));
+
+	    $(".block-placeholder-animator").stop().height(placeholderAnimatorHeight + 15).animate({
+	      height: 0
+	    }, 300, function() {
+	      $(this).remove();
+	      placeholderHeight = ui.item.outerHeight();
+	      $('<div class="block-placeholder-animator" data-height="' + placeholderHeight + '"></div>').insertAfter(ui.placeholder);
+	    });
+
+	  },
+	  stop: function(e, ui) {
+
+	    $(".block-placeholder-animator").remove();
+
+	  },
+	});
+	$('.block-add').click(function() {
+	  $(this).closest('.column').find('.blocks').append('<div class="block clearfix"><div class="block-actions pull-right"><div class="remove modifier remove-block"><i class="fa fa-times"></i></div><div class="action modifier copy-block"><i class="fa fa-repeat"></i></div><div class="edit modifier edit-block"><i class="fa fa-pencil"></i></div></div></div>');
+	});
+
+	// Rows
+	$('.row-add').click(function() {
+	  $('.builder-body').append('<div class="row well sortable"><div class="col-xs-6 column well sortable"></div><div class="col-xs-6 column well sortable"></div></div>');
+	});
+	$.fn.extend({
+	  removeclasser: function(re) {
+	    return this.each(function() {
+	      var c = this.classList
+	      for (var i = c.length - 1; i >= 0; i--) {
+	        var classe = "" + c[i]
+	        if (classe.match(re)) c.remove(classe)
+	      }
+	    })
+	    return re;
+	  },
+	  translatecolumn: function(columns) {
+	    var grid = [];
+	    var items = columns.split(',');
+	    for (i = 0; i < items.length; ++i) {
+	      if (items[i] == '1') {
+	        grid.push(12);
+	      }
+	      if (items[i] == '2') {
+	        grid.push(6);
+	      }
+	      if (items[i] == '3') {
+	        grid.push(4);
+	      }
+	    }
+	    return grid;
+	  }
+	});
+
+	// Column Controls
+	$(".row-toolbar").disableSelection();
+
+	$('.column-option').click(function() {
+	  var grid = $.fn.translatecolumn($(this).data('split').toString());
+	  var columns = $(this).closest('.row').find('.column');
+	  for (i = 0; i < grid.length; ++i) {
+	    if (columns[i]) {
+	      $(columns[i]).removeclasser('col-');
+	      $(columns[i]).addClass('col-xs-' + grid[i]);
+	    } else {
+	      // Create column with class
+	      $(columns[i]).append('<div class="col-xs-6 column well sortable"><div class="blocks">');
+	    }
+	    // If less columns than existing then merge
+	  }
+	});
+
 </script>
 
 

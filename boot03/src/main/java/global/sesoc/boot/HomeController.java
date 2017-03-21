@@ -59,10 +59,24 @@ public class HomeController {
 		userRepository.join(user);
 		return "home";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(User user) {
+		logger.info("data 수집 완료 ==> " + user.toString());
+		//userRepository.join(user);
+		return "home";
+	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test() {
 		return "testing";
 	}
+	
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String write() {
+		return "write";
+	}
+
+		
 
 }

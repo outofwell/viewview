@@ -33,40 +33,6 @@
 		}
 	</style>
 
-<script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-}
-</script>
-<style>
-#div1{
-    float: left;
-    width: 400px;
-    height: 300px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-}
-
-#div2{
-	float: left;
-	width: 400px;
-    height: 100px;
-	margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-}
-</style>
 </head>
 
 <body class="index-page">
@@ -144,30 +110,35 @@ function drop(ev) {
 
 	<div class="main main-raised">
 		<div class="section section-basic">
-	    	<div class="container">
+	    	<div class="container"><h3>write</h3>
 	    		<div class="row">
-		    		<div class="col-md-6">
-		    		
-						<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-						  <img src="http://placehold.it/380x70" draggable="true" ondragstart="drag(event)" id="drag1">
-						</div>
+		    		<div class="col-md-3">
+		    		<center><br>
+						<img src="http://placehold.it/120" /><br>
+						<button class="btn btn-primary btn-sm">get Cover</button>
+						<hr>
 						<br>
-		
-						<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">Drop Here & write</div>
-	
+						<div class="togglebutton">
+							<label>
+						    	<input type="checkbox">
+								share
+							</label>
+						</div>
+					</center>	
 					</div>
-					<div class="col-md-6">
-						<h4>My Boards</h4>
-						<img src="http://placehold.it/400x400">
+					
+					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px;">
+						<div class="form-group">
+    					<input type="text" value="" placeholder="Title" class="form-control" />
+						</div>
+						<textarea class="form-control" placeholder="Code" rows="5"></textarea>
+						<textarea class="form-control" placeholder="Detail" rows="5"></textarea>
+						<div style="text-align:right;"><button class="btn btn-primary btn-sm">write</button></div>
 					</div>
 				</div>
 
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
-    <script src='resources/js/jaudio.min.js'></script>
-    <script src='resources/js/main.js'></script>
 	    	
-	    	
-			</div>
+	</div>
 		</div>
 		
 	    <footer class="footer">

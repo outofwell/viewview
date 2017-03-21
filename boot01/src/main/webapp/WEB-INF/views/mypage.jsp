@@ -33,6 +33,22 @@
 		}
 	</style>
 
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
 </head>
 
 <body class="index-page">
@@ -113,7 +129,18 @@
 	    	<div class="container">
 	    		<div class="row">
 	    		<div class="col-md-12">
-				<h3>내용</h3>
+	    		
+	    		
+	    		
+	    		
+				<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+
+
 				</div>
 				</div>
 
