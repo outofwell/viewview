@@ -2,12 +2,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>HiCu Testing</title>
+  <title>Readmore.js: jQuery plugin for long blocks of text</title>
+  <meta name="description" content="A smooth, lightweight jQuery plugin for collapsing and expanding long blocks of text with &#8220;Read more&#8221; and &#8220;Close&#8221; links.">
+  <meta name="author" content="Jed Foster">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="/node_modules/readmore-js/readmore.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+
+
+  <style media="screen">
+    body { font: 16px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; color: #444; }
+    code { color: #777; font-family: "Source Code Pro", "Menlo", "Courier New", monospace;}
+    a { color: #178DB1; }
+    .container { margin: 0 auto; max-width: 960px; }
+    #info + .readmore-js-toggle { padding-bottom: 1.5em; border-bottom: 1px solid #999; font-weight: bold;}
+    #demo { padding: 0 10%; }
+    
+    
+  </style>
 </head>
+
 
 <body class="index-page">
 <jsp:include page="navigation.jsp" flush="false"/>
@@ -20,71 +39,57 @@
 		<div class="section section-basic">
 	    	<div class="container">
 	    		<div class="row">
-	    		<div class="col-md-12">
-				<!--                 collapse -->
-	            <div id="collapse">
-	                <div class="title">
-	                    <h3>Board</h3>
-	                </div>
-	                <center>
-	                <div class="row" style="width:600px;">
-	                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-	                          <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingOne" style="background-color:white;">
-	                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-	                                    <h4 class="panel-title">
-	                                    	<img src="http://placehold.it/100" /> 게시물 제목 1
-	                                    <i class="material-icons">keyboard_arrow_down</i>
-	                                    </h4>
-	                                </a>
-	                            </div>
-	                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-	                              <div class="panel-body">
-	                              	게시물 내용 1 <img src="resources/assets/img/mic.png"> 
-	                              	<button class="btn btn-primary btn-fab btn-fab-mini btn-round">
-	<i class="material-icons">favorite</i>
-</button>
-	                              </div>
-	                            </div>
-	                          </div>
-	                          <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingTwo" style="background-color:white;">
-	                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-	                                <h4 class="panel-title">
-	                                  Collapsible Group Item #2
-	                                  <i class="material-icons">keyboard_arrow_down</i>
-	                                </h4>
-	                              </a>
-	                            </div>
-	                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-	                              <div class="panel-body">
-	                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-	                              </div>
-	                            </div>
-	                          </div>
-	                          <div class="panel panel-default">
-	                            <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-	                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-	                                <h4 class="panel-title">
-	                                  Collapsible Group Item #3
-	                                  <i class="material-icons">keyboard_arrow_down</i>
-	                                </h4>
-	                              </a>
-	                            </div>
-	                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-	                              <div class="panel-body">
-	                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-	                              </div>
-	                            </div>
-	                          </div>
-	                        </div>
-	                </div>
-	                <center>
-	            </div>
-	<!--                 end collapse -->
-	</div>
+		    		<div class="col-md-12" style="width:650px;">
+		    		<h3>Shared Music</h3>
+		    			dldldl
+		    			<!-- 게시글 시작-->
+			    		<div class="row" style="border-top: solid lightgray 1px; padding: 10px;">
+				    		<div class="col-md-3">
+				    		<img src="http://placehold.it/100" />
+				    		<button class="btn btn-primary btn-sm">Song1</button>
+				    		</div>
+				    		<div class="col-md-9">
+							  <button class="btn btn-primary btn-xs">Extra Small</button>
+							  <article>
+						        <p>From this distant vantage point, the Earth might not seem of any particular interest. But for us, it's different. Consider again that dot. That's here. That's home. That's us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their lives. The aggregate of our joy and suffering, thousands of confident religions, ideologies, and economic doctrines, every hunter and forager, every hero and coward, every creator and destroyer of civilization, every king and peasant, every young couple in love, every mother and father, hopeful child, inventor and explorer, every teacher of morals, every corrupt politician, every "superstar," every "supreme leader," every saint and sinner in the history of our species lived there â€“ on a mote of dust suspended in a sunbeam.</p>
+						     	<button class="btn btn-primary btn-sm">구독</button> <button class="btn btn-primary btn-sm">♥</button><br>
+						     	<table><tr><td>idid : </td><td>댓글내용~~~~~~~~~~~~~~~</td></tr></table>
+						     	<input type="text" placeholder="reply"> <button class="btn btn-primary btn-sm">등록</button>
+						      </article>
+				    		</div>
+			    		</div>
+			    		<!-- 게시글 끝 -->
+			    		<!-- 게시글 시작-->
+			    		<div class="row" style="border-top: solid lightgray 1px; padding: 10px;">
+				    		<div class="col-md-3">
+				    		<img src="http://placehold.it/100" />
+				    		<button class="btn btn-primary btn-sm">Song2</button>
+				    		</div>
+				    		<div class="col-md-9">
+							  <input type="text" value="" placeholder="제목" class="form-control" readonly checked="checked"/>
+						      <article>
+						        <p>From this distant vantage point, the Earth might not seem of any particular interest. But for us, it's different. Consider again that dot. That's here. That's home. That's us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their lives. The aggregate of our joy and suffering, thousands of confident religions, ideologies, and economic doctrines, every hunter and forager, every hero and coward, every creator and destroyer of civilization, every king and peasant, every young couple in love, every mother and father, hopeful child, inventor and explorer, every teacher of morals, every corrupt politician, every "superstar," every "supreme leader," every saint and sinner in the history of our species lived there â€“ on a mote of dust suspended in a sunbeam.</p>
+						     	<button class="btn btn-primary btn-sm">구독</button> <button class="btn btn-primary btn-sm">♥</button><br>
+						     	<table><tr><td>idid : </td><td>댓글내용~~~~~~~~~~~~~~~</td></tr></table>
+						     	<input type="text" placeholder="reply"> <button class="btn btn-primary btn-sm">등록</button>
+						      </article>
+				    		</div>
+			    		</div>
+			    		<!-- 게시글 끝 -->
+			    		
+			    		<!-- page navigation start-->
+			    		<ul class="pagination pagination-primary">
+							<li><a href="#"><</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">></a></li>
+						</ul>
+						<!-- page navigation end-->
+					</div>
 				</div>
-
 			</div>
 		</div>
 		
@@ -105,4 +110,22 @@
 		background-color: white;}
 		
 	</style>
+	
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script src="resources/js/Readmore.js"></script>
+
+  <script>
+    $('#info').readmore({
+      moreLink: '<a href="#">Usage, examples, and options</a>',
+      collapsedHeight: 384,
+      afterToggle: function(trigger, element, expanded) {
+        if(! expanded) { // The "Close" link was clicked
+          $('html, body').animate({scrollTop: element.offset().top}, {duration: 100});
+        }
+      }
+    });
+    $('article').readmore({speed: 500});
+  </script>
+
 </html>
