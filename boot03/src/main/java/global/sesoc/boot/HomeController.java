@@ -55,7 +55,7 @@ public class HomeController {
 	public String testing() {
 		return "aboutus";
 	}
-	
+
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test() {
 		return "testing";
@@ -67,7 +67,6 @@ public class HomeController {
 		userRepository.join(user);
 		return "home";
 	}
-	
 
 	// login 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -75,7 +74,7 @@ public class HomeController {
 		userRepository.login(userid, password, model, session);
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 		return "write";
@@ -86,5 +85,18 @@ public class HomeController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	}
+
+	// id 중복확인 화면 요청
+	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
+	public String idCheck() {
+		return "idCheck";
+	}
+	
+	// id 중복화인 처리 요청
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public String idCheck(String userid, Model model) {
+		userRepository.idCheck(userid, model);
+		return "idCheck";
 	}
 }

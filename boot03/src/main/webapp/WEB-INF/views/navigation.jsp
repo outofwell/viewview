@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
@@ -52,11 +53,18 @@
 
 			<div class="collapse navbar-collapse" id="navigation-index">
 				<ul class="nav navbar-nav navbar-right">
-					
+
 					<script>
-					//alert("${ pageContext.request.getServletPath()}");
+						//alert("${ pageContext.request.getServletPath()}");
 					</script>
-					
+
+					<script>
+						function idCheckOpen() {
+							window.open("idCheck", "newwin",
+									"top=200, left=400, width=400, height=300");
+						}
+					</script>
+
 					<li class="active"><a href=".">MAIN</a></li>
 					<li><a href="comu">COMU</a></li>
 					<li><a href="hicu">HICU</a></li>
@@ -78,7 +86,9 @@
 													<span class="input-group-addon"> <i
 														class="material-icons">face</i>
 													</span> <input type="text" class="form-control" placeholder="ID"
-														name="userid">
+														name="userid" id="userid"> <input type="button"
+														class="btn btn-primary" value="ID중복확인"
+														onclick="idCheckOpen()" />
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"> <i
@@ -132,8 +142,8 @@
 		</div>
 	</nav>
 	<!-- End Navbar -->
-	
-	
+
+
 	<!-- Start Modal -->
 	<div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -187,7 +197,7 @@
 		</div>
 	</div>
 	<!--  End Modal -->
-	
+
 
 </body>
 
@@ -226,7 +236,5 @@
 		}
 
 	});
-	
-
 </script>
 </html>
