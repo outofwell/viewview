@@ -64,7 +64,6 @@ public class HomeController {
 	// join 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(User user) {
-		logger.info("data 수집 완료 ==> " + user.toString());
 		userRepository.join(user);
 		return "home";
 	}
@@ -82,4 +81,10 @@ public class HomeController {
 		return "write";
 	}
 
+	// logout 처리
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 }
