@@ -21,7 +21,6 @@ public class UserRepository {
 
 	// 회원가입 Repository
 	public int join(User user) {
-		logger.info("data 수집 완료 ==> " + user.toString());
 
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 
@@ -29,7 +28,6 @@ public class UserRepository {
 
 		try {
 			result = dao.join(user);
-			logger.info("insert count ==> " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
