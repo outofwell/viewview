@@ -1,7 +1,7 @@
 package global.sesoc.boot.vo;
 
 public class User {
-	private String id;
+	private String userid;
 	private String email;
 	private String password;
 
@@ -9,19 +9,19 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String id, String email, String password) {
+	public User(String userid, String email, String password) {
 		super();
-		this.id = id;
+		this.userid = userid;
 		this.email = email;
 		this.password = password;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getEmail() {
@@ -42,7 +42,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
+		return "User [userid=" + userid + ", email=" + email + ", password=" + password + "]";
 	}
 
 }

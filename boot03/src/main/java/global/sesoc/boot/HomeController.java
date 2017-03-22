@@ -1,9 +1,12 @@
 package global.sesoc.boot;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,7 +55,13 @@ public class HomeController {
 	public String testing() {
 		return "aboutus";
 	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test() {
+		return "testing";
+	}
 
+	// join 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(User user) {
 		logger.info("data 수집 완료 ==> " + user.toString());
@@ -60,23 +69,17 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(User user) {
-		logger.info("data 수집 완료 ==> " + user.toString());
-		//userRepository.join(user);
-		return "home";
-	}
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test() {
-		return "testing";
+	// login 처리
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(String userid, String password, Model model, HttpSession session) {
+		userRepository.login(userid, password, model, session);
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write() {
 		return "write";
 	}
-
-		
 
 }

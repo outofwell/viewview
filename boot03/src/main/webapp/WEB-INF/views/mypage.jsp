@@ -46,6 +46,9 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+    //alert(data);
+    location.href = 'write?file='+data;
+   
 }
 </script>
 <style>
@@ -148,8 +151,10 @@ function drop(ev) {
 	    		<div class="row">
 		    		<div class="col-md-6">
 		    		
-						<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+						<div id="div1" ondragover="allowDrop(event)">
 						  <img src="http://placehold.it/380x70" draggable="true" ondragstart="drag(event)" id="drag1">
+						  <img src="http://placehold.it/380x70" draggable="true" ondragstart="drag(event)" id="drag2">
+						  <img src="http://placehold.it/380x70" draggable="true" ondragstart="drag(event)" id="drag3">
 						</div>
 						<br>
 		

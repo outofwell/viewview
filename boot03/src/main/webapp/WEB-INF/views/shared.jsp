@@ -120,13 +120,13 @@
 	                    <h3>Board</h3>
 	                </div>
 	                <center>
-	                <div class="row" style="width:800px;">
+	                <div class="row" style="width:600px;">
 	                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 	                          <div class="panel panel-default">
 	                            <div class="panel-heading" role="tab" id="headingOne" style="background-color:white;">
 	                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 	                                    <h4 class="panel-title">
-	                                    	게시물 제목 1
+	                                    	<img src="http://placehold.it/100" /> 게시물 제목 1
 	                                    <i class="material-icons">keyboard_arrow_down</i>
 	                                    </h4>
 	                                </a>

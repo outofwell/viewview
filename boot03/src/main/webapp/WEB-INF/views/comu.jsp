@@ -137,7 +137,7 @@
 					</div>
 			    	<div class="col-md-6">	<!-- 오른쪽 -->
 			    	<h3>PLAY</h3>
-			    	<div><br><br><br><br>재생 칸<br><br><br><br><br><br><br><br></div>
+			    	<div><img src="http://placehold.it/450x350" /></div>
 			    	<button class="btn btn-primary">Load</button>
 					<button class="btn btn-primary">Save</button>
 					</div>
