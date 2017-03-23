@@ -69,4 +69,24 @@ public class UserRepository {
 		}
 		return "redirect:/";
 	}
+	
+	// id 중복확인 Repository
+	public String idCheck(String userid, Model model) {
+		UserDAO dao = sqlSession.getMapper(UserDAO.class);
+		User user = null;
+		
+		try {
+			user = dao.selectOne(userid);
+			
+			if(user != null) {
+				model.addAttribute("notCheckId", user.getUserid());
+			} else {
+				model.addAttribute("checkId", userid);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "join";
+	}
 }

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
@@ -52,11 +53,18 @@
 
 			<div class="collapse navbar-collapse" id="navigation-index">
 				<ul class="nav navbar-nav navbar-right">
-					
+
 					<script>
-					//alert("${ pageContext.request.getServletPath()}");
+						//alert("${ pageContext.request.getServletPath()}");
 					</script>
-					
+
+					<script>
+						function idCheckOpen() {
+							window.open("idCheck", "newwin",
+									"top=200, left=400, width=400, height=300");
+						}
+					</script>
+
 					<li class="active"><a href=".">MAIN</a></li>
 					<li><a href="comu">COMU</a></li>
 					<li><a href="hicu">HICU</a></li>
@@ -78,7 +86,11 @@
 													<span class="input-group-addon"> <i
 														class="material-icons">face</i>
 													</span> <input type="text" class="form-control" placeholder="ID"
-														name="userid">
+														name="userid" id="userid"> <a href="#pablo"
+														class="btn btn-simple btn-primary btn-lg"> <input
+														type="button" class="btn btn-primary" value="ID중복확인"
+														onclick="idCheckOpen()" />
+													</a>
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"> <i
@@ -96,7 +108,8 @@
 											<a href="#pablo" class="btn btn-simple btn-primary btn-lg">
 												<button class="btn btn-primary btn-simple"
 													data-toggle="modal" data-target="#joinModal">JOIN</button>
-												<button class="btn btn-primary btn-simple">FIND</button>
+												<button class="btn btn-primary btn-simple"
+													data-toggle="modal" data-target="#findModal">FIND</button>
 											</a>
 										</div>
 					</c:if>
@@ -132,9 +145,9 @@
 		</div>
 	</nav>
 	<!-- End Navbar -->
-	
-	
-	<!-- Start Modal -->
+
+
+	<!-- Start joinModal -->
 	<div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -186,8 +199,49 @@
 			</div>
 		</div>
 	</div>
-	<!--  End Modal -->
-	
+	<!--  End joinModal -->
+
+	<!-- Start findModal -->
+	<div class="modal fade" id="findModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<i class="material-icons">clear</i>
+					</button>
+					<h4 class="modal-title">FIND</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form" method="post" action="find">
+						<div class="content">
+							<div class="input-group">
+								<span class="input-group-addon"> <i
+									class="material-icons">face</i>
+								</span> <input type="text" class="form-control" placeholder="ID"
+									name="userid" id="userid">
+							</div>
+
+							<div class="input-group">
+								<span class="input-group-addon"> <i
+									class="material-icons">email</i>
+								</span> <input type="text" class="form-control" placeholder="E-MAIL"
+									name="email" id="email">
+							</div>
+						</div>
+						<div class="footer text-center">
+							<a href="#pablo" class="btn btn-simple btn-primary btn-lg">
+								<button class="btn btn-primary">find !</button>
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  End findModal -->
+
 
 </body>
 
@@ -226,7 +280,5 @@
 		}
 
 	});
-	
-
 </script>
 </html>
