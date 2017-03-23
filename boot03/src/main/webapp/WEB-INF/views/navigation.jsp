@@ -67,7 +67,7 @@
 					<li><a href="#"></a></li>
 					<c:if test="${empty loginId}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Login <b class="caret"></b>
+							data-toggle="dropdown" id="log">Login <b class="caret"></b>
 						</a>
 							<ul class="dropdown-menu dropdown-menu-right">
 								<li>

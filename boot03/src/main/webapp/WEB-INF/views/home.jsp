@@ -22,7 +22,9 @@
 							<h1>CO-MU</h1>
 							<h4>A New Music Creator</h4>
 							<br>
-							<h3>LOGIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOIN</h3>
+							<h3><a href="#log" style="color:white;">Login</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="#pablo" style="color:white;" data-toggle="modal" data-target="#joinModal">JOIN</a></h3>
 						</div>
 					</div>
 				</div>
