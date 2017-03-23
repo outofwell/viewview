@@ -40,8 +40,9 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#navigation-index">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<a href="#">
 					<div class="logo-container">
@@ -55,13 +56,6 @@
 
 					<script>
 						//alert("${ pageContext.request.getServletPath()}");
-					</script>
-
-					<script>
-						function idCheckOpen() {
-							window.open("idCheck", "newwin",
-									"top=200, left=400, width=400, height=300");
-						}
 					</script>
 
 					<li class="active"><a href=".">MAIN</a></li>
@@ -86,13 +80,11 @@
 														class="material-icons">face</i>
 													</span> <input type="text" class="form-control" placeholder="ID"
 														name="userid" id="userid"> <a href="#pablo"
-														class="btn btn-simple btn-primary btn-lg"> <input
-														type="button" class="btn btn-primary" value="ID중복확인"
-														onclick="idCheckOpen()" />
-													</a>
+														class="btn btn-simple btn-primary btn-lg"> </a>
 												</div>
 												<div class="input-group">
-													<span class="input-group-addon"> <i class="material-icons">lock_outline</i>
+													<span class="input-group-addon"> <i
+														class="material-icons">lock_outline</i>
 													</span> <input type="password" placeholder="Password"
 														class="form-control" name="password" />
 												</div>
@@ -112,8 +104,7 @@
 										</div>
 					</c:if>
 					<c:if test="${not empty loginId}">
-						<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Logout<b class="caret"></b>
 						</a>
 							<ul class="dropdown-menu dropdown-menu-right">
@@ -121,8 +112,7 @@
 									<div class="col-sm-12">
 										<div class="content">
 											<a href="#pablo" class="btn btn-simple btn-primary btn-lg">
-												${loginId} 님이 로그인 중입니다. 
-											</a>
+												${loginId} 님이 로그인 중입니다. </a>
 										</div>
 									</div>
 								</li>
@@ -163,45 +153,52 @@
 					<form class="form" method="post" action="join">
 						<div class="content">
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">face</i>
+								<span class="input-group-addon"> <i
+									class="material-icons">face</i>
 								</span> <input type="text" class="form-control" placeholder="ID"
 									name="userid">
 							</div>
 
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">email</i>
+								<span class="input-group-addon"> <i
+									class="material-icons">email</i>
 								</span> <input type="text" class="form-control" placeholder="E-MAIL"
 									name="email">
 							</div>
 
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">lock_outline</i>
+								<span class="input-group-addon"> <i
+									class="material-icons">lock_outline</i>
 								</span> <input type="password" placeholder="Password.."
 									class="form-control" name="password" />
 							</div>
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">lock</i>
+								<span class="input-group-addon"> <i
+									class="material-icons">lock</i>
 								</span> <input type="password" placeholder="Password...."
 									class="form-control" />
 							</div>
-							
+
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">help_outline</i>
-								</span> 
-								
+								<span class="input-group-addon"> <i
+									class="material-icons">help_outline</i>
+								</span>
+
 								<div class="form-group">
-									<select class="select form-control">
-									  <option value="volvo" selected>Choose Question</option>
-									  <option value="saab">1. 이름은?</option>
-									  <option value="mercedes">2. 별명은?</option>
-									  <option value="audi">3. 고향은?</option>
+									<select class="select form-control" name="question">
+										<option value="volvo" selected>Choose Question</option>
+										<option value="saab">1. 이름은?</option>
+										<option value="mercedes">2. 별명은?</option>
+										<option value="audi">3. 고향은?</option>
 									</select>
 								</div>
 							</div>
-							
+
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">help</i>
-								</span> <input type="text" placeholder="Answer" class="form-control" />
+								<span class="input-group-addon"> <i
+									class="material-icons">help</i>
+								</span> <input type="text" placeholder="Answer" class="form-control"
+									name="answer" />
 							</div>
 						</div>
 						<div class="footer text-center">
@@ -217,11 +214,13 @@
 	<!--  End joinModal -->
 
 	<!-- Start findModal -->
-	<div class="modal fade" id="findModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="findModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
 						<i class="material-icons">clear</i>
 					</button>
 					<h4 class="modal-title">FIND</h4>
@@ -232,11 +231,13 @@
 							<div class="input-group">
 								<span class="input-group-addon"> <i
 									class="material-icons">face</i>
-								</span> <input type="text" class="form-control" placeholder="ID" name="userid" id="userid">
+								</span> <input type="text" class="form-control" placeholder="ID"
+									name="userid" id="userid">
 							</div>
 
 							<div class="input-group">
-								<span class="input-group-addon"> <i class="material-icons">email</i>
+								<span class="input-group-addon"> <i
+									class="material-icons">email</i>
 								</span> <input type="text" class="form-control" placeholder="E-MAIL"
 									name="email" id="email">
 							</div>
