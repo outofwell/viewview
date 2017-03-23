@@ -21,15 +21,12 @@ public class UserRepository {
 
 	// 회원가입 Repository
 	public int join(User user) {
-		logger.info("data 수집 완료 ==> " + user.toString());
-
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 
 		int result = 0;
 
 		try {
 			result = dao.join(user);
-			logger.info("insert count ==> " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,11 +35,11 @@ public class UserRepository {
 	}
 	
 	// 아이디로 회원 정보 가져오기 Repository
-	public void selectOne(String id, Model model) {
+	public void selectOne(String userid, Model model) {
 		UserDAO dao = sqlSession.getMapper(UserDAO.class);
 		User u = null;
 		try {
-			u = dao.selectOne(id);
+			u = dao.selectOne(userid);
 			model.addAttribute("User", u);
 		} catch (Exception e) {
 			e.printStackTrace();
