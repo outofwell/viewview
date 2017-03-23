@@ -184,9 +184,27 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon"> <i
-									class="material-icons">lock_outline</i>
+									class="material-icons">lock</i>
 								</span> <input type="password" placeholder="Password...."
 									class="form-control" />
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon"> <i
+									class="material-icons">help_outline</i>
+								</span> 
+							<div class="form-group">
+							<select class="select form-control">
+							  <option value="volvo" selected>Choose Question</option>
+							  <option value="saab">1. 이름은?</option>
+							  <option value="mercedes">2. 별명은?</option>
+							  <option value="audi">3. 고향은?</option>
+							</select>
+							</div>
+							</div>
+							
+							<div class="input-group">
+								<span class="input-group-addon"> <i class="material-icons">help</i>
+								</span> <input type="text" placeholder="Answer" class="form-control" />
 							</div>
 						</div>
 						<div class="footer text-center">
