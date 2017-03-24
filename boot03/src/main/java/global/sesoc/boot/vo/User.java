@@ -4,16 +4,20 @@ public class User {
 	private String userid;
 	private String email;
 	private String password;
+	private String question;
+	private String answer;
 
 	public User() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public User(String userid, String email, String password) {
+	public User(String userid, String email, String password, String question, String answer) {
 		super();
 		this.userid = userid;
 		this.email = email;
 		this.password = password;
+		this.question = question;
+		this.answer = answer;
 	}
 
 	public String getUserid() {
@@ -40,9 +44,26 @@ public class User {
 		this.password = password;
 	}
 
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", email=" + email + ", password=" + password + "]";
+		return "User [userid=" + userid + ", email=" + email + ", password=" + password + ", question=" + question
+				+ ", answer=" + answer + "]";
 	}
 
 }
