@@ -46,7 +46,7 @@
 				</button>
 				<a href="#">
 					<div class="logo-container">
-						<div class="brand">CoMu</div>
+						<div class="brand"></div>
 					</div>
 				</a>
 			</div>

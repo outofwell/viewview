@@ -145,7 +145,7 @@
 	  },
 
 	  render: function render() {
-	    return _react2["default"].createElement("input", { ref: "in", type: "file", accept: "image/*", onChange: this.handleFile });
+	    return _react2["default"].createElement("input", { name:"upload", ref: "in", type: "file", accept: "image/*", onChange: this.handleFile });
 	  }
 	});
 

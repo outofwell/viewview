@@ -23,7 +23,7 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
     //alert(data);
-    location.href = 'write?file='+data;
+    location.href = 'write';
    
 }
 </script>

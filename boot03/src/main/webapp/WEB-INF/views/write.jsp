@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import=" java.util.*, java.io.*"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,6 +30,7 @@
 	    		<div class="row">
 		    		<div class="col-md-3">
 		    		<center><br>
+		    		<form class="form" action="writing" enctype="multipart/form-data" method="post">
 					    <div style="display: inline-block" id="content"></div>
 						<button class="btn btn-primary btn-sm">get Cover</button>
 						<hr>
@@ -45,11 +47,13 @@
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">
 						<div class="form-group">
-    					<input type="text" value="" placeholder="Title" class="form-control" />
+    					<input type="text" value="" placeholder="Title" class="form-control" name="title" />
 						</div>
-						<textarea class="form-control" placeholder="code" rows="5">${param.file}에서 가져온 코드가 여기에 들어간다 <br> code c = new code();</textarea>
-						<textarea class="form-control" placeholder="Detail" rows="5"></textarea>
+						<textarea class="form-control" placeholder="code" rows="5" name="code">${param.file}에서 가져온 코드가 여기에 들어간다 <br> code c = new code();</textarea>
+						<textarea class="form-control" placeholder="Detail" rows="5" name="content"></textarea>
 						<div style="text-align:right;"><button class="btn btn-primary btn-sm">write</button></div>
+					</form>	    
+
 					</div>
 				</div>
 	</div>

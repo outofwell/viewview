@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.boot.repository.UserRepository;
+import global.sesoc.boot.util.FileService;
 import global.sesoc.boot.vo.User;
 
 @Controller
@@ -18,6 +20,8 @@ public class HomeController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	final String uploadPath = "/imagefiles";
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -97,11 +101,37 @@ public class HomeController {
 	public String idCheck() {
 		return "idCheck";
 	}
+
 	
-	// id 중복화인 처리 요청
+	// id 중복확인 처리 요청
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public String idCheck(String userid, Model model) {
 		userRepository.idCheck(userid, model);
 		return "idCheck";
 	}
+	
+	
+	
+	
+	
+	//작성된 게시글을 DB에 저장		//@return 게시글 입력화면을 위한 view
+	@RequestMapping(value="/writing", method=RequestMethod.POST)
+	public String writing(MultipartFile upload){
+		
+		//첨부된 파일을 처리
+		if(!upload.isEmpty()){
+			String savedFile = FileService.saveFile(upload, uploadPath);
+			System.out.println(savedFile);
+			//board.setOriginalfile(upload.getOriginalFilename());
+			//board.setSavedfile(savedFile);
+		}else{
+			System.out.println("oh.");
+		}
+		
+		return "write";
+	}
+	
+	
+	
+	
 }
