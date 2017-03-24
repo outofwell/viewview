@@ -60,6 +60,11 @@ public class HomeController {
 	public String test() {
 		return "testing";
 	}
+	
+	@RequestMapping(value = "/test2", method = RequestMethod.GET)
+	public String test2() {
+		return "testing2";
+	}
 
 	// join 처리
 	@RequestMapping(value = "/join", method = RequestMethod.POST)

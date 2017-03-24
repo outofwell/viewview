@@ -28,7 +28,8 @@
 							</div>
 							<div class="col-md-2">
 								<button class="btn btn-primary">▶</button>
-								<button class="btn btn-primary">▼</button>
+								<a href="#sliderRegular">
+								<button class="btn btn-primary">▼</button></a>
 							</div>
 						</div>
 						<textarea class="form-control" placeholder="code" rows="10"></textarea>
