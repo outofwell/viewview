@@ -45,7 +45,7 @@ function drop(ev) {
 	margin: 10px;
     padding: 10px;
     border: 1px solid lightgray;
-    border-radius: 5px;
+    border-radius: 1px;
 }
 </style>
 </head>
