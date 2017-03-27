@@ -87,6 +87,7 @@ $(document).ready(function() {
 	var position = $("#code").getCursorPosition();
 	$("#code").setCursorPosition(position);
 	$("#code").insertAtCursor(sample);
+	$('#sample').val('');
 	});
 	});
 	
