@@ -1,4 +1,4 @@
--- �����DB
+-- 사용자DB
 DROP TABLE cm_user;
 
 CREATE TABLE cm_user
@@ -10,7 +10,7 @@ question VARCHAR2(30) NOT NULL,
 answer VARCHAR2(30) NOT NULL
 );
 
--- ����DB
+-- 파일DB
 DROP TABLE cm_file;
 DROP SEQUENCE filenum_seq;
 
@@ -29,7 +29,7 @@ cover_re VARCHAR2(200)
 
 CREATE SEQUENCE filenum_seq;
 
--- �Խ���DB
+-- 게시판DB
 DROP TABLE cm_board;
 DROP SEQUENCE boardnum_seq;
 
@@ -47,7 +47,7 @@ shared VARCHAR2(20) NOT NULL
 
 CREATE SEQUENCE boardnum_seq;
 
--- ���DB
+-- 댓글DB
 DROP TABLE cm_reply;
 DROP SEQUENCE replynum_seq;
 
@@ -64,7 +64,7 @@ inputdate DATE DEFAULT SYSDATE
 
 CREATE SEQUENCE replynum_seq;
 
--- ���ƿ�DB
+-- 좋아요DB
 DROP TABLE cm_like;
 
 CREATE TABLE cm_like
@@ -76,7 +76,7 @@ REFERENCES cm_user(userid) ON DELETE CASCADE,
 like_userid VARCHAR2(30) NOT NULL
 );
 
--- ����DB
+-- 구독DB
 DROP TABLE cm_subscribe;
 
 CREATE TABLE cm_subscribe
