@@ -148,6 +148,8 @@ public class HomeController {
 			file.setCover_re(savedFile);
 		}
 		
+		file.setFile_com("comfiled code");
+		
 		System.out.println(file);
 		
 		
