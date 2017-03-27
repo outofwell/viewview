@@ -6,14 +6,28 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <link href="https://bootswatch.com/paper/bootstrap.min.css" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="resources/css/prism.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js" charset="utf-8"></script>
-  <link href="resources/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+      <script type="text/javascript">
+        $(function() {
+            $("#imgInp").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#imgView').attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
 	<title>MY PAGE</title>
 </head>
 
@@ -28,17 +42,22 @@
 		<div class="section section-basic">
 	    	<div class="container"><h3>write</h3>
 	    		<div class="row">
+	    		<form id="form1" runat="server" action="writing" method="post" enctype="multipart/form-data">
+	    			<input type="hidden" name="userid" value="${loginId}" />
 		    		<div class="col-md-3">
 		    		<center><br>
-		    		<form class="form" action="writing" enctype="multipart/form-data" method="post">
-					    <div style="display: inline-block" id="content"></div>
-						<button class="btn btn-primary btn-sm">get Cover</button>
+		    				
+				        <img id="imgView" src="http://placehold.it/120" alt="your image" style="width: 120px; height:120px;"/>
+				        <br>
+				   		 <label class="btn btn-primary btn-sm">
+			                get Cover&hellip; <input type="file" style="display: none;" id="imgInp" name="upload" />
+			            </label>
 						<hr>
-						<br>
+
 						
 						<div class="togglebutton">
 							<label>
-						    	<input type="checkbox">
+						    	<input type="checkbox" name="share" value="shared">
 								share
 							</label>
 						</div>
@@ -47,16 +66,15 @@
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">
 						<div class="form-group">
-    					<input type="text" value="" placeholder="Title" class="form-control" name="title" />
+    					<input type="text" placeholder="Title" class="form-control" name="title" />
 						</div>
-						<textarea class="form-control" placeholder="code" rows="5" name="code">${param.file}에서 가져온 코드가 여기에 들어간다 <br> code c = new code();</textarea>
-						<textarea class="form-control" placeholder="Detail" rows="5" name="content"></textarea>
+						<textarea class="form-control" placeholder="code" rows="5">${param.file}에서 가져온 코드</textarea>
+						<textarea class="form-control" placeholder="detail" rows="5" name="content"></textarea>
 						<div style="text-align:right;"><button class="btn btn-primary btn-sm">write</button></div>
-					</form>	    
-
 					</div>
+				</form>	    
 				</div>
-	</div>
+			</div>
 		</div>
 		
 	    <footer class="footer">

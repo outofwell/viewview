@@ -1,4 +1,4 @@
--- »ç¿ëÀÚDB
+-- ï¿½ï¿½ï¿½ï¿½ï¿½DB
 DROP TABLE cm_user;
 
 CREATE TABLE cm_user
@@ -10,7 +10,7 @@ question VARCHAR2(30) NOT NULL,
 answer VARCHAR2(30) NOT NULL
 );
 
--- ÆÄÀÏDB
+-- ï¿½ï¿½ï¿½ï¿½DB
 DROP TABLE cm_file;
 DROP SEQUENCE filenum_seq;
 
@@ -21,7 +21,7 @@ userid VARCHAR2(30) NOT NULL CONSTRAINT cm_file_fk
 REFERENCES cm_user(userid) ON DELETE CASCADE,
 file_ori VARCHAR2(4000) NOT NULL,
 file_com VARCHAR2(4000) NOT NULL,
-type VARCHAR2(10) NOT NULL,
+file_type VARCHAR2(10) NOT NULL,
 file_title VARCHAR2(50) NOT NULL,
 cover_ori VARCHAR2(200),
 cover_re VARCHAR2(200)
@@ -29,7 +29,7 @@ cover_re VARCHAR2(200)
 
 CREATE SEQUENCE filenum_seq;
 
--- °Ô½ÃÆÇDB
+-- ï¿½Ô½ï¿½ï¿½ï¿½DB
 DROP TABLE cm_board;
 DROP SEQUENCE boardnum_seq;
 
@@ -41,12 +41,13 @@ REFERENCES cm_user(userid) ON DELETE CASCADE,
 title VARCHAR2(100) NOT NULL,
 content VARCHAR2(2000),
 inputdate DATE DEFAULT SYSDATE,
-filenum NUMBER
+filenum NUMBER,
+shared VARCHAR2(20) NOT NULL
 );
 
 CREATE SEQUENCE boardnum_seq;
 
--- ´ñ±ÛDB
+-- ï¿½ï¿½ï¿½DB
 DROP TABLE cm_reply;
 DROP SEQUENCE replynum_seq;
 
@@ -63,7 +64,7 @@ inputdate DATE DEFAULT SYSDATE
 
 CREATE SEQUENCE replynum_seq;
 
--- ÁÁ¾Æ¿äDB
+-- ï¿½ï¿½ï¿½Æ¿ï¿½DB
 DROP TABLE cm_like;
 
 CREATE TABLE cm_like
@@ -75,7 +76,7 @@ REFERENCES cm_user(userid) ON DELETE CASCADE,
 like_userid VARCHAR2(30) NOT NULL
 );
 
--- ±¸µ¶DB
+-- ï¿½ï¿½ï¿½ï¿½DB
 DROP TABLE cm_subscribe;
 
 CREATE TABLE cm_subscribe

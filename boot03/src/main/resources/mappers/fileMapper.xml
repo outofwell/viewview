@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="global.sesoc.boot.dao.FileDAO">
+
+	<!-- 파일 저장 -->
+	<insert id="save" parameterType="File">
+		INSERT INTO cm_file
+		VALUES
+		(filenum_seq.nextval, #{userid}, #{file_ori}, #{file_com}, #{file_type}, #{file_title}, #{cover_ori}, #{cover_re}) 
+	</insert>
+	
+</mapper>

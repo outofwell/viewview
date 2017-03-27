@@ -50,19 +50,10 @@
 	    		<div class="col-md-12">
 				<h3>ABOUT US</h3>
 				
-	<form enctype="multipart/form-data">
-        <div class="form-group">
-            <input id="file-4" type="file" class="file" data-upload-url="#">
-        </div>
-        <hr>
-        <div class="form-group">
-            <button class="btn btn-warning" type="button">Disable Test</button>
-            <button class="btn btn-info" type="reset">Refresh Test</button>
-            <button class="btn btn-primary">Submit</button>
-            <button class="btn btn-default" type="reset">Reset</button>
-        </div>
-        <hr>
-    </form>
+	    				 <form id="form1" runat="server" action="writing" method="post" enctype="multipart/form-data">
+						<textarea class="form-control" placeholder="detail" rows="5" name="content"></textarea>
+						<div style="text-align:right;"><button class="btn btn-primary btn-sm">write</button></div>
+					</form>	  
 	</div>
 </div>
 

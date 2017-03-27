@@ -74,7 +74,7 @@
 	    return {
 	      cropperOpen: false,
 	      img: null,
-	      croppedImg: "http://placehold.it/120x120"
+	      croppedImg: "http://placehold.it/120x120" //TODO
 	    };
 	  },
 	  handleFileChange: function handleFileChange(dataURI) {
@@ -114,7 +114,8 @@
 	          ),
 	          _react2["default"].createElement("i", { className: "" })	//fa fa-camera
 	        ),
-	        _react2["default"].createElement("img", { src: this.state.croppedImg })
+	        _react2["default"].createElement("img", { src: this.state.croppedImg }),
+	        _react2["default"].createElement("input", { src: this.state.croppedImg })//여기
 	      ),
 	      this.state.cropperOpen && _react2["default"].createElement(_lib2["default"], {
 	        onRequestHide: this.handleRequestHide,
