@@ -1,5 +1,7 @@
 package global.sesoc.boot.repository;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +29,17 @@ public class FileRepository {
 		}
 		
 		return result;
+	}
+	
+	public ArrayList<Files> fileList(){
+		ArrayList<Files> list = new ArrayList();
+		FileDAO dao = sqlSession.getMapper(FileDAO.class);
+		try {
+			list = dao.fileList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	

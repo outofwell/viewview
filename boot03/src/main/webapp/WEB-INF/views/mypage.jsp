@@ -34,16 +34,18 @@ function drop(ev) {
     height: 300px;
     margin: 10px;
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 
 #div2{
 	float: left;
-	width: 400px;
+	width: 200px;
     height: 100px;
 	margin: 10px;
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 </style>
 </head>
@@ -67,8 +69,10 @@ function drop(ev) {
 						  <img src="http://placehold.it/380x70" draggable="true" ondragstart="drag(event)" id="drag3">
 						</div>
 						<br>
-		
-						<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">Drop Here & write</div>
+						<div>
+						<span id="div2">ddddwww</span>
+						<span id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">Drop Here & write</span>
+						</div>
 	
 					</div>
 					<div class="col-md-6">

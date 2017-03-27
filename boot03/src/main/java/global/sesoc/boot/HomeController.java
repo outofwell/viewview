@@ -1,5 +1,7 @@
 package global.sesoc.boot;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.boot.repository.BoardRepository;
+import global.sesoc.boot.repository.FileRepository;
 import global.sesoc.boot.repository.UserRepository;
 import global.sesoc.boot.util.FileService;
 import global.sesoc.boot.vo.Board;
@@ -26,6 +30,9 @@ public class HomeController {
 	
 	@Autowired
 	BoardRepository boardRepository;
+	
+	@Autowired
+	FileRepository fileRepository;
 	
 	final String uploadPath = "/imagefiles";
 
@@ -136,9 +143,9 @@ public class HomeController {
 	}
 	
 	
-	//comu- 파일 저장
+	//comu - 파일 저장
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String save(MultipartFile upload, Files file){
+	public String save(MultipartFile upload, Files file, HttpSession session){
 		
 		//첨부된 파일을 처리
 		if(!upload.isEmpty()){
@@ -151,11 +158,31 @@ public class HomeController {
 		file.setFile_com("comfiled code");
 		
 		System.out.println(file);
+		fileRepository.save(file);
+		
+		session.removeAttribute("file");
 		
 		return "comu";
 	}
 	
+	//comu- 파일 불러오기
+	@RequestMapping(value="/load", method=RequestMethod.POST)
+	public String load(Files file, HttpSession session){
+		
+		file.setFile_ori("original code");
+		file.setFile_title("original title");
+		session.setAttribute("file", file);
+		
+		return "comu";
+	}
 	
-	
+	//comu- load - 모든 파일 목록 불러오기(ajax)
+	@RequestMapping(value="/fileList", method=RequestMethod.GET)
+	public @ResponseBody ArrayList<Files> fileList(){
+		ArrayList<Files> list = fileRepository.fileList();
+		System.out.println(list);
+		
+		return list;
+	}
 	
 }

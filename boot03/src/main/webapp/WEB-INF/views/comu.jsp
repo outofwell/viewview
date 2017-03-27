@@ -110,6 +110,48 @@ $(document).ready(function() {
           reader.readAsDataURL(input.files[0]);
         }
     }
+    
+    //파일 불러오기
+    function load(){
+    	var form = document.getElementById("form1");
+    	form.action="load"; 
+    	form.submit();
+	
+    	//1.플레이어의 파일 목록을 불러온다[file_title, cover_ori, filenum]
+    	//2.목록(새창)에서 파일을 선택한 후(filenum을 )
+    	//3.controller에서 값을 세션에 저장하고 comu에서 value로 세팅
+    }
+    
+    //파일 저장
+    function save(){
+    	var form = document.getElementById("form1");
+    	form.action="save"; 
+    	form.submit();
+    }
+    
+    //전체 파일 리스트 불러오기
+    $(function(){
+    	$("#load").on('click', function(){
+    		$.ajax({
+    			type : "get", 
+    			url : "fileList", 
+    			success : function(resp){
+
+    				var msg="<table border='1'>";
+    				
+    				$.each(resp, function(index, item){
+    					msg+="<tr><td class='tdNum'>"+item.cover_ori+"</td></tr>";
+    					msg+="<tr><td class='tdName'>"+item.file_title+"</td></tr>";
+    				});
+    				
+    				msg += "<table>";
+    				
+    				$("#loader").html(msg);
+    			}
+    		});
+    	});
+    	
+    });
 </script>
 </head>
 
@@ -125,29 +167,29 @@ $(document).ready(function() {
 		<div class="section section-basic">
 
 	    	<div class="container">
-		<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="userid" value="${loginId}">
 			<input type="hidden" name="file_type" value="comu">
 	    		<div class="row">
 					<div class="col-md-6">	<!-- 왼쪽 -->
 						<h3>CODING</h3>
 						<div class="row">
+						<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
 							<div class="col-md-10">
 								<textarea class="form-control" placeholder="run sample" rows="4" name="sample" id="sample"></textarea>
 							</div>
 							<div class="col-md-2">
-								<button class="btn btn-primary">▶</button>
-								<button class="btn btn-primary" name="under" id="under">▼</button>
+								<button class="btn btn-primary" onClick="return false;">▶</button>
+								<button class="btn btn-primary" name="under" id="under" onClick="return false;">▼</button>
 							</div>
 						</div>
-						<textarea class="form-control" placeholder="code" rows="10" name="file_ori" id="code"></textarea>
+						<textarea class="form-control" placeholder="code" rows="10" name="file_ori" id="code">${file.file_ori}</textarea>
 						
 						<div class="row">
 							<div class="col-md-10">
 								<div id="sliderRegular" class="slider"></div>
 							</div>
 							<div class="col-md-2">
-								<button class="btn btn-primary">▶</button>
+								<button class="btn btn-primary" onClick="return false;">▶</button>
 							</div>
 						</div>
 					</div>
@@ -166,15 +208,16 @@ $(document).ready(function() {
 							</div>
 							<div class="col-md-8">
 								<div class="form-group">
-		   							<input type="text" placeholder="Title" class="form-control" name="file_title" /><br>
-		   							<button class="btn btn-primary">Load</button>
-									<button class="btn btn-primary">Save</button>
+		   							<input type="text" placeholder="Title" class="form-control" name="file_title" value="${file.file_title}" /><br>
+		</form>
+									<a href="#pablo" class="btn btn-primaru btn-primary" 
+									data-toggle="modal" data-target="#list" id="load">Load</a>
+									<button class="btn btn-primary" onclick="save()">Save</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-		</form>
 			</div>
 		
 		</div>
@@ -184,6 +227,29 @@ $(document).ready(function() {
 		</footer>
 	</div>
 </div>
+
+<!-- Modal Core -->
+<div class="modal fade" id="list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      	<div id="loader"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info btn-simple">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 <style>
 	.main-raised {

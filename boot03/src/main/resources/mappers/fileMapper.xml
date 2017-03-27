@@ -11,4 +11,8 @@
 		(filenum_seq.nextval, #{userid}, #{file_ori}, #{file_com}, #{file_type}, #{file_title}, #{cover_ori}, #{cover_re}) 
 	</insert>
 	
+	<select id="fileList" resultType="File">
+		SELECT * FROM cm_file
+	</select>
+	
 </mapper>
