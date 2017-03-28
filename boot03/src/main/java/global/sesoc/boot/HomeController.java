@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,7 +35,7 @@ public class HomeController {
 	@Autowired
 	FileRepository fileRepository;
 	
-	final String uploadPath = "/imagefiles";
+	final String uploadPath = "/covers";
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -44,7 +45,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/comu", method = RequestMethod.GET)
-	public String comu() {
+	public String comu(HttpSession session) {
+		session.removeAttribute("file");
 		return "comu";
 	}
 
@@ -157,21 +159,12 @@ public class HomeController {
 		file.setFile_com("comfiled code");
 		
 		System.out.println(file);
-		fileRepository.save(file);
 		
-		session.removeAttribute("file");
-		
-		return "comu";
-	}
-	
-	//comu- 파일 불러오기
-	@RequestMapping(value="/load", method=RequestMethod.POST)
-	public String load(Files file, HttpSession session){
-		
-		file.setFile_ori("original code");
-		file.setFile_title("original title");
-		session.setAttribute("file", file);
-		
+		if(file.getFilenum() == 0){
+			fileRepository.saveFile(file);
+		}else{
+			fileRepository.updateFile(file);
+		}
 		return "comu";
 	}
 	
@@ -182,6 +175,16 @@ public class HomeController {
 		System.out.println(list);
 		
 		return list;
+	}
+	
+	//comu- 파일 불러오기
+	@RequestMapping(value="/load", method=RequestMethod.GET)
+	public String loadFile(int filenum, HttpSession session){
+		
+		Files file = fileRepository.loadFile(filenum);
+		session.setAttribute("file", file);
+		
+		return "comu";
 	}
 	
 }

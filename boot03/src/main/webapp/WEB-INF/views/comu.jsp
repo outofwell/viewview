@@ -10,6 +10,7 @@
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+
 	$('#under').click(function(){
 		jQuery.fn.extend({
 			setCursorPosition: function(position){
@@ -137,14 +138,18 @@ $(document).ready(function() {
     			url : "fileList", 
     			success : function(resp){
 
-    				var msg="<table border='1'>";
+    				var msg="<table class='table' id='loadlist'><tr>";
     				
     				$.each(resp, function(index, item){
-    					msg+="<tr><td class='tdNum'>"+item.cover_ori+"</td></tr>";
-    					msg+="<tr><td class='tdName'>"+item.file_title+"</td></tr>";
+    					//img 주소 : 테스트용 임시 주소!!
+    					msg+='<td class="btn btn-white"><a href="load?filenum='+item.filenum+'"><img src="resources/covers/'+item.cover_re+'" style="width:80px; height:80px; border-radius:5px;"></a><br>';
+    					msg+=item.file_title+'</td>';
+    					if((index+5) % 4 == 0){ 
+    						msg+= "</tr><tr>"; 
+    					}
     				});
     				
-    				msg += "<table>";
+    				msg += "</tr><table>";
     				
     				$("#loader").html(msg);
     			}
@@ -153,6 +158,23 @@ $(document).ready(function() {
     	
     });
 </script>
+<style>
+#loadlist{
+	text-align: center;
+	
+	padding: 5px;
+	border : 1px lightgray;
+	border-radius : 5px;
+}
+
+#loadlist td{
+	text-align: center;
+	
+	padding: 10px;
+	border : 1px lightgray;
+	border-radius : 5px;
+}
+</style>
 </head>
 
 <body class="index-page">
@@ -165,7 +187,6 @@ $(document).ready(function() {
 
 	<div class="main main-raised">
 		<div class="section section-basic">
-
 			<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
 	    	<div class="container">
 			<input type="hidden" name="userid" value="${loginId}">
@@ -196,12 +217,14 @@ $(document).ready(function() {
 					
 			    	<div class="col-md-6">	<!-- 오른쪽 -->
 			    	<h3>PLAY</h3>
+			    	
 			    				    	
-			    	<div><img src="http://placehold.it/450x250" /></div>
+			    	<div><img src="http://placehold.it/450x250"></div>
 			    	<hr>
 			    		<div class="row">
 							<div class="col-md-4">
-								<img id="imgView" src="resources/assets/img/robot.png" style="width:100px; height:100px;">
+							<!-- img 주소 : 테스트용 임시 주소!! -->
+							<img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='http://placehold.it/100'" style="width:100px; height:100px;">
 								<label class="btn btn-primary btn-sm">
 					                get Cover&hellip; <input type="file" style="display: none;" id="imgInp" name="upload" />
 					            </label>
@@ -234,7 +257,7 @@ $(document).ready(function() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Load</h4>
       </div>
       <div class="modal-body">
       	<div id="loader"></div>

@@ -5,14 +5,21 @@
 <mapper namespace="global.sesoc.boot.dao.FileDAO">
 
 	<!-- 파일 저장 -->
-	<insert id="save" parameterType="File">
+	<insert id="saveFile" parameterType="File">
 		INSERT INTO cm_file
 		VALUES
 		(filenum_seq.nextval, #{userid}, #{file_ori}, #{file_com}, #{file_type}, #{file_title}, #{cover_ori}, #{cover_re}) 
 	</insert>
 	
+	<!-- 파일 목록 불러오기 -->
 	<select id="fileList" resultType="File">
 		SELECT * FROM cm_file
+	</select>
+	
+	<!-- 특정 파일 불러오기 -->
+	<select id="loadFile" resultType="File">
+		SELECT * FROM cm_file
+		WHERE FILENUM = #{filenum}
 	</select>
 	
 </mapper>

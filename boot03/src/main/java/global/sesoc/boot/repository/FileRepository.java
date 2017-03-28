@@ -17,13 +17,13 @@ public class FileRepository {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public int save(Files file){
+	public int saveFile(Files file){
 		FileDAO dao = sqlSession.getMapper(FileDAO.class);
 		
 		int result = 0;
 
 		try {
-			dao.save(file);
+			dao.saveFile(file);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,6 +40,17 @@ public class FileRepository {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public Files loadFile(int filenum) {
+		Files file = null;
+		FileDAO dao = sqlSession.getMapper(FileDAO.class);
+		try {
+			file = dao.loadFile(filenum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return file;
 	}
 	
 	
