@@ -166,6 +166,7 @@ $(document).ready(function() {
 	<div class="main main-raised">
 		<div class="section section-basic">
 
+			<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
 	    	<div class="container">
 			<input type="hidden" name="userid" value="${loginId}">
 			<input type="hidden" name="file_type" value="comu">
@@ -173,7 +174,6 @@ $(document).ready(function() {
 					<div class="col-md-6">	<!-- 왼쪽 -->
 						<h3>CODING</h3>
 						<div class="row">
-						<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
 							<div class="col-md-10">
 								<textarea class="form-control" placeholder="run sample" rows="4" name="sample" id="sample"></textarea>
 							</div>

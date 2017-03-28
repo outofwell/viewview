@@ -123,7 +123,7 @@ public class HomeController {
 		return "idCheck";
 	}
 	
-	//작성된 게시글을 DB에 저장		//@return 게시글 입력화면을 위한 view
+	//작성된 게시글을 DB에 저장	
 	@RequestMapping(value="/writing", method=RequestMethod.POST)
 	public String writing(MultipartFile upload, Board board){
 		
@@ -150,7 +150,6 @@ public class HomeController {
 		//첨부된 파일을 처리
 		if(!upload.isEmpty()){
 			String savedFile = FileService.saveFile(upload, uploadPath);
-			System.out.println(savedFile);
 			file.setCover_ori(upload.getOriginalFilename());
 			file.setCover_re(savedFile);
 		}
