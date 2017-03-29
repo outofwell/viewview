@@ -25,7 +25,8 @@ import global.sesoc.boot.vo.User;
 
 @Controller
 public class HomeController {
-
+	
+	
 	@Autowired
 	UserRepository userRepository;
 	
@@ -35,10 +36,11 @@ public class HomeController {
 	@Autowired
 	FileRepository fileRepository;
 	
+	//이미지 파일 업로드 경로
 	final String uploadPath = "/covers";
+	
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+	//======페이지 이동 START
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		return "home";
@@ -74,7 +76,10 @@ public class HomeController {
 	public String testing() {
 		return "aboutus";
 	}
-
+	//======페이지 이동 END
+	
+	
+	//=====테스트 페이지 START
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test() {
 		return "testing";
@@ -84,107 +89,7 @@ public class HomeController {
 	public String test2() {
 		return "testing2";
 	}
+	//======테스트 페이지 END
 
-	// join 처리
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(User user) {
-		userRepository.join(user);
-		return "home";
-	}
-
-	// login 처리
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String userid, String password, Model model, HttpSession session) {
-		userRepository.login(userid, password, model, session);
-		return "redirect:/";
-	}
-
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write() {
-		return "write";
-	}
-
-	// logout 처리
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
-	}
-
-	// id 중복확인 화면 요청
-	@RequestMapping(value = "/idCheck", method = RequestMethod.GET)
-	public String idCheck() {
-		return "idCheck";
-	}
-
-	
-	// id 중복확인 처리 요청
-	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public String idCheck(String userid, Model model) {
-		userRepository.idCheck(userid, model);
-		return "idCheck";
-	}
-	
-	//작성된 게시글을 DB에 저장	
-	@RequestMapping(value="/writing", method=RequestMethod.POST)
-	public String writing(MultipartFile upload, Board board){
-		
-		System.out.println(board);
-		
-		//첨부된 파일을 처리
-		if(!upload.isEmpty()){
-			String savedFile = FileService.saveFile(upload, uploadPath);
-			System.out.println(savedFile);
-			//board.setOriginalfile(upload.getOriginalFilename());
-			//board.setSavedfile(savedFile);
-		}else{}
-		
-		boardRepository.write(board);
-		
-		return "write";
-	}
-	
-	
-	//comu - 파일 저장
-	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String save(MultipartFile upload, Files file, HttpSession session){
-		
-		//첨부된 파일을 처리
-		if(!upload.isEmpty()){
-			String savedFile = FileService.saveFile(upload, uploadPath);
-			file.setCover_ori(upload.getOriginalFilename());
-			file.setCover_re(savedFile);
-		}
-		
-		file.setFile_com("comfiled code");
-		
-		System.out.println(file);
-		
-		if(file.getFilenum() == 0){
-			fileRepository.saveFile(file);
-		}else{
-			fileRepository.updateFile(file);
-		}
-		return "comu";
-	}
-	
-	//comu- load - 모든 파일 목록 불러오기(ajax)
-	@RequestMapping(value="/fileList", method=RequestMethod.GET)
-	public @ResponseBody ArrayList<Files> fileList(){
-		ArrayList<Files> list = fileRepository.fileList();
-		System.out.println(list);
-		
-		return list;
-	}
-	
-	//comu- 파일 불러오기
-	@RequestMapping(value="/load", method=RequestMethod.GET)
-	public String loadFile(int filenum, HttpSession session){
-		
-		Files file = fileRepository.loadFile(filenum);
-		session.setAttribute("file", file);
-		
-		return "comu";
-	}
 	
 }

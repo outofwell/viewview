@@ -117,10 +117,6 @@ $(document).ready(function() {
     	var form = document.getElementById("form1");
     	form.action="load"; 
     	form.submit();
-	
-    	//1.플레이어의 파일 목록을 불러온다[file_title, cover_ori, filenum]
-    	//2.목록(새창)에서 파일을 선택한 후(filenum을 )
-    	//3.controller에서 값을 세션에 저장하고 comu에서 value로 세팅
     }
     
     //파일 저장
@@ -159,9 +155,15 @@ $(document).ready(function() {
     });
 </script>
 <style>
+#loader{
+	margin: auto;
+	width: 450px;
+	height: 250px;
+	overflow: auto;
+}
+
 #loadlist{
 	text-align: center;
-	
 	padding: 5px;
 	border : 1px lightgray;
 	border-radius : 5px;
@@ -169,7 +171,6 @@ $(document).ready(function() {
 
 #loadlist td{
 	text-align: center;
-	
 	padding: 10px;
 	border : 1px lightgray;
 	border-radius : 5px;
@@ -191,7 +192,8 @@ $(document).ready(function() {
 	    	<div class="container">
 			<input type="hidden" name="userid" value="${loginId}">
 			<input type="hidden" name="file_type" value="comu">
-	    		<div class="row">
+			<input type="hidden" name="filenum" value="${file.filenum}">
+				<div class="row">
 					<div class="col-md-6">	<!-- 왼쪽 -->
 						<h3>CODING</h3>
 						<div class="row">
@@ -224,7 +226,7 @@ $(document).ready(function() {
 			    		<div class="row">
 							<div class="col-md-4">
 							<!-- img 주소 : 테스트용 임시 주소!! -->
-							<img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='http://placehold.it/100'" style="width:100px; height:100px;">
+							<img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='resources/assets/img/robot.png'" style="width:100px; height:100px;">
 								<label class="btn btn-primary btn-sm">
 					                get Cover&hellip; <input type="file" style="display: none;" id="imgInp" name="upload" />
 					            </label>

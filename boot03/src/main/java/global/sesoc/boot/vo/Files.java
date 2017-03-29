@@ -1,5 +1,5 @@
 package global.sesoc.boot.vo;
-
+	
 public class Files {
 
 	private int filenum;
@@ -40,7 +40,7 @@ public class Files {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-
+	
 	public String getFile_ori() {
 		return file_ori;
 	}

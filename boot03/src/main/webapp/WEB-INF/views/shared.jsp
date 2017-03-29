@@ -22,8 +22,6 @@
     .container { margin: 0 auto; max-width: 960px; }
     #info + .readmore-js-toggle { padding-bottom: 1.5em; border-bottom: 1px solid #999; font-weight: bold;}
     #demo { padding: 0 10%; }
-    
-    
   </style>
 </head>
 
@@ -41,7 +39,6 @@
 	    		<div class="row">
 		    		<div class="col-md-12" style="width:650px;">
 		    		<h3>Shared Music</h3>
-		    			dldldl
 		    			<!-- 게시글 시작-->
 			    		<div class="row" style="border-top: solid lightgray 1px; padding: 10px;">
 				    		<div class="col-md-3">
@@ -112,7 +109,6 @@
 	</style>
 	
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
   <script src="resources/js/Readmore.js"></script>
 
   <script>

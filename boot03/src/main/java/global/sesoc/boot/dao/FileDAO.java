@@ -15,6 +15,9 @@ public interface FileDAO {
 
 	//COMU - LOAD - 특정 파일 불러오기
 	public Files loadFile(int filenum) throws Exception;
+
+	//COMU - SAVE - 파일 덮어쓰기
+	public int updateFile(Files file) throws Exception;
 	
 	
 }

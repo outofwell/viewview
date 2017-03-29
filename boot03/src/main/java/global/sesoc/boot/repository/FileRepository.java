@@ -52,6 +52,17 @@ public class FileRepository {
 		}
 		return file;
 	}
+
+	public int updateFile(Files file) {
+		int result = 0;
+		FileDAO dao = sqlSession.getMapper(FileDAO.class);
+		try {
+			result = dao.updateFile(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 }
