@@ -10,7 +10,6 @@
 <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-
 	//under START=====
 	$('#under').click(function(){
 		jQuery.fn.extend({
@@ -94,39 +93,22 @@ $(document).ready(function() {
 	});
 	//under END=====
 	
+	
 	//커버 이미지 삽입
     $(function() {
         $("#imgInp").on('change', function(){
             readURL(this);
         });
     });
-
     function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
                 $('#imgView').attr('src', e.target.result);
             }
-
           reader.readAsDataURL(input.files[0]);
         }
     }
-    
-    //파일 불러오기
-    function load(){
-    	var form = document.getElementById("form1");
-    	form.action="load"; 
-    	form.submit();
-    }
-    
-    //파일 저장
-    $("#save").on('click', function(){
-    	alert("?");
-    	//var form = document.getElementById("form1");
-    	//form.action="save"; 
-    	//form.submit();
-    });
     
     //전체 파일 리스트 불러오기
     $(function(){
@@ -155,6 +137,14 @@ $(document).ready(function() {
     	});
     	
     });
+    
+    //파일 저장
+    function save(){
+    	var form = document.getElementById("form1");
+    	form.action="save"; 
+    	form.submit();
+    }
+
 </script>
 <style>
 #loader{
@@ -190,12 +180,12 @@ $(document).ready(function() {
 
 	<div class="main main-raised">
 		<div class="section section-basic">
-			<form id="form1" runat="server" method="post" enctype="multipart/form-data">
+
+			<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
 	    	<div class="container">
 			<input type="hidden" name="userid" value="${loginId}">
 			<input type="hidden" name="file_type" value="comu">
-			<input type="hidden" name="filenum" value="${file.filenum}">
-				<div class="row">
+	    		<div class="row">
 					<div class="col-md-6">	<!-- 왼쪽 -->
 						<h3>CODING</h3>
 						<div class="row">
@@ -226,7 +216,7 @@ $(document).ready(function() {
 					
 			    	<div class="col-md-6">	<!-- 오른쪽 -->
 			    	<h3>PLAY</h3>
-			    	<div><img src="http://placehold.it/450x250"></div>
+<div><img src="http://placehold.it/450x250"></div>
 			    	<hr>
 			    		<div class="row">
 							<div class="col-md-4">
@@ -238,15 +228,14 @@ $(document).ready(function() {
 							</div>
 							<div class="col-md-8">
 								<div class="form-group">
-									<div class="form-group label-floating">
+		   							<div class="form-group label-floating">
 										<label class="control-label">Title</label>
 		   									<input type="text" class="form-control" name="file_title" value="${file.file_title}" /><br>
 		   							</div>
-		</form>
-									<button>dwdw</button>
+		   		</form>
 									<a href="#pablo" class="btn btn-primaru btn-primary" 
 									data-toggle="modal" data-target="#list" id="load">Load</a>
-									<button class="btn btn-primary" id="save" onsubmit="return false">Save</button>
+									<button class="btn btn-primary" onclick="save()">Save</button>
 								</div>
 							</div>
 						</div>
@@ -268,7 +257,7 @@ $(document).ready(function() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Load</h4>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
       	<div id="loader"></div>
