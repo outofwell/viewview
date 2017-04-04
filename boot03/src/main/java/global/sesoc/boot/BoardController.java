@@ -1,11 +1,14 @@
 package global.sesoc.boot;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import global.sesoc.boot.repository.BoardRepository;
@@ -27,15 +30,23 @@ public class BoardController {
 	@Autowired
 	FileRepository fileRepository;
 	
+	@Autowired
+	HttpSession session;
+	
 	//이미지 파일 업로드 경로
 	final String uploadPath = "/covers";
 	
 	
 	//MYPAGE : 글쓰기 페이지로 이동
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String write(int filenum, HttpSession session) {
-
-		//드래그로 글 작성
+	public String write() {
+		session.removeAttribute("boardFile");
+		return "write";
+	}
+	
+	//MYPAGE : 글쓰기 페이지로 이동(드래그)
+	@RequestMapping(value = "/dragwrite", method = RequestMethod.GET)
+	public String write(int filenum) {
 		if(filenum != 0){
 			Files file = fileRepository.loadFile(filenum);
 			session.setAttribute("boardFile", file);
@@ -57,10 +68,21 @@ public class BoardController {
 			//board.setOriginalfile(upload.getOriginalFilename());
 			//board.setSavedfile(savedFile);
 		}else{}
-		
+		if(board.getShare()==null){
+			board.setShare("unshare");
+		}		
 		boardRepository.write(board);
-		
-		return "write";
+		//session.setAttribute("message", "등록 완료");
+		return "mypage";
+	}
+	
+	//글 목록 불러오기(개인) (ajax)
+	@RequestMapping(value="/boardList", method=RequestMethod.GET)
+	public @ResponseBody ArrayList<Board> boardList(){
+		String id = (String)session.getAttribute("loginId");
+		ArrayList<Board> list = boardRepository.boardList(id);
+		System.out.println(list);
+		return list;
 	}
 	
 	//글 수정

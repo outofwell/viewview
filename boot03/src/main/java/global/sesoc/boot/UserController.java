@@ -2,6 +2,7 @@ package global.sesoc.boot;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,18 @@ public class UserController {
 
 	// login 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String userid, String password, Model model, HttpSession session) {
+	public String login(String userid, String password, Model model, HttpSession session, HttpServletRequest request) {
 		userRepository.login(userid, password, model, session);
-		return "redirect:/";
+		String uri = request.getHeader("referer");
+		return "redirect:"+uri;
 	}
 	
 	// logout 처리
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
-		return "redirect:/";
+		String uri = request.getHeader("referer");
+		return "redirect:"+uri;
 	}
 
 	// id 중복확인 화면 요청

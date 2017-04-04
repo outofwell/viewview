@@ -11,6 +11,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+	//under START=====
 	$('#under').click(function(){
 		jQuery.fn.extend({
 			setCursorPosition: function(position){
@@ -91,7 +92,7 @@ $(document).ready(function() {
 	$('#sample').val('');
 	});
 	});
-	
+	//under END=====
 	
 	//커버 이미지 삽입
     $(function() {
@@ -120,11 +121,12 @@ $(document).ready(function() {
     }
     
     //파일 저장
-    function save(){
-    	var form = document.getElementById("form1");
-    	form.action="save"; 
-    	form.submit();
-    }
+    $("#save").on('click', function(){
+    	alert("?");
+    	//var form = document.getElementById("form1");
+    	//form.action="save"; 
+    	//form.submit();
+    });
     
     //전체 파일 리스트 불러오기
     $(function(){
@@ -188,7 +190,7 @@ $(document).ready(function() {
 
 	<div class="main main-raised">
 		<div class="section section-basic">
-			<form id="form1" runat="server" action="save" method="post" enctype="multipart/form-data">
+			<form id="form1" runat="server" method="post" enctype="multipart/form-data">
 	    	<div class="container">
 			<input type="hidden" name="userid" value="${loginId}">
 			<input type="hidden" name="file_type" value="comu">
@@ -198,15 +200,20 @@ $(document).ready(function() {
 						<h3>CODING</h3>
 						<div class="row">
 							<div class="col-md-10">
-								<textarea class="form-control" placeholder="run sample" rows="4" name="sample" id="sample"></textarea>
+								<div class="form-group label-floating">
+									<label class="control-label">Run Sample</label>
+									<textarea class="form-control" rows="4" name="sample" id="sample"></textarea>
+								</div>
 							</div>
 							<div class="col-md-2">
 								<button class="btn btn-primary" onClick="return false;">▶</button>
 								<button class="btn btn-primary" name="under" id="under" onClick="return false;">▼</button>
 							</div>
 						</div>
-						<textarea class="form-control" placeholder="code" rows="10" name="file_ori" id="code">${file.file_ori}</textarea>
-						
+						<div class="form-group label-floating">
+							<label class="control-label">Code</label>
+								<textarea class="form-control" rows="10" name="file_ori" id="code">${file.file_ori}</textarea>
+						</div>
 						<div class="row">
 							<div class="col-md-10">
 								<div id="sliderRegular" class="slider"></div>
@@ -219,8 +226,6 @@ $(document).ready(function() {
 					
 			    	<div class="col-md-6">	<!-- 오른쪽 -->
 			    	<h3>PLAY</h3>
-			    	
-			    				    	
 			    	<div><img src="http://placehold.it/450x250"></div>
 			    	<hr>
 			    		<div class="row">
@@ -233,11 +238,15 @@ $(document).ready(function() {
 							</div>
 							<div class="col-md-8">
 								<div class="form-group">
-		   							<input type="text" placeholder="Title" class="form-control" name="file_title" value="${file.file_title}" /><br>
+									<div class="form-group label-floating">
+										<label class="control-label">Title</label>
+		   									<input type="text" class="form-control" name="file_title" value="${file.file_title}" /><br>
+		   							</div>
 		</form>
+									<button>dwdw</button>
 									<a href="#pablo" class="btn btn-primaru btn-primary" 
 									data-toggle="modal" data-target="#list" id="load">Load</a>
-									<button class="btn btn-primary" onclick="save()">Save</button>
+									<button class="btn btn-primary" id="save" onsubmit="return false">Save</button>
 								</div>
 							</div>
 						</div>

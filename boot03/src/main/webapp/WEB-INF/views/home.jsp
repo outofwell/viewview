@@ -36,7 +36,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6"></div>
-						<div class="col-md-6">2번째 칸!!!!</div>
+						<div class="col-md-6">2번째 칸!!!!<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 					</div>
 				</div>
 			</div>

@@ -23,10 +23,13 @@
 	    var count = 0;
 	    $("input:checkbox").on('click', function(){
 	   	  	if(count>0){
-		    	$("#share").html("unshare");
+		    	$("#shared").html("unshared");
+		   	  	$("#shared").css("color", "#CCCCCC");
 		    	count=0;
 	   	  	}else{
-		   	  	$("#share").html("share");
+		   	  	$("#shared").html("shared");
+		   	  	$("#shared").css("color", "#9c27b0");
+		   	  	//$("#code").html("");
 		    	count++;
 	   	  	}
 	    });
@@ -50,6 +53,7 @@
 		width: 120px; height:120px;
 		border-radius: 5px;
 	}
+	#center{ margin: auto; text-align: center;}
 </style>
 <title>MY PAGE</title>
 </head>
@@ -66,10 +70,10 @@
 	    	<div class="container"><h3>write</h3>
 	    		<div class="row">
 	    		<form id="form1" runat="server" action="writing" method="post" enctype="multipart/form-data">
+	    			<input type="hidden" name="filenum" value="${boardFile.filenum}" />
 	    			<input type="hidden" name="userid" value="${loginId}" />
-		    		<div class="col-md-3">
-		    		<center><br>
-		    				
+		    		<div class="col-md-3" id="center">
+		    		<br>
 				        <img id="imgView" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='resources/assets/img/robot.png'"/>
 				        <br>
 				   		 <label class="btn btn-primary btn-sm">
@@ -79,19 +83,25 @@
 
 						<div class="togglebutton">
 							<label>
-						    	<input type="checkbox" id="checkbox" value="shared">
-								<span id="share">unshare</span>
+						    	<input type="checkbox" id="checkbox" value="share" name="share">
+								<span id="shared">unshared</span>
 							</label>
 						</div>
-					</center>	
 					</div>
 					
 					<div class="col-md-9" style="border:solid 1px lightgray; padding:25px; border-radius: 5px;">
-						<div class="form-group">
-    					<input type="text" placeholder="Title" class="form-control" name="title" value="${boardFile.file_title}"/>
+						<div class="form-group label-floating">
+							<label class="control-label">Title</label>
+							<input type="text" class="form-control" name="title" value="${boardFile.file_title}">
 						</div>
-						<textarea class="form-control" placeholder="code" rows="5" readonly>${boardFile.file_ori}</textarea>
-						<textarea class="form-control" placeholder="detail" rows="5" name="content"></textarea>
+						<div class="form-group label-floating" id="code">
+						<label class="control-label">Code</label>
+						<textarea class="form-control"rows="5" readonly>${boardFile.file_ori}</textarea>
+						</div>
+						<div class="form-group label-floating">
+						<label class="control-label">Detail</label>
+						<textarea class="form-control" rows="5" name="content"></textarea>
+						</div>
 						<div style="text-align:right;"><button class="btn btn-primary btn-sm">write</button></div>
 					</div>
 				</form>	    
@@ -105,7 +115,6 @@
 		</footer>
 	</div>
 </div>
-
 </body>
 	<style>
 		.main-raised {

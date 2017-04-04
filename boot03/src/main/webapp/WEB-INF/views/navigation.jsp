@@ -23,13 +23,14 @@
 <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" />
 <link href="resources/assets/css/material-kit.css" rel="stylesheet" />
 
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="resources/assets/css/demo.css" rel="stylesheet" />
-
-<link rel="stylesheet" type="text/css" href="resources/css/main.min.css">
 <script src='resources/js/jaudio.min.js'></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+.navbar-header{
+height: 50px;
+}
+</style>
 </head>
 <body>
 
@@ -53,11 +54,6 @@
 
 			<div class="collapse navbar-collapse" id="navigation-index">
 				<ul class="nav navbar-nav navbar-right">
-
-					<script>
-						//alert("${ pageContext.request.getServletPath()}");
-					</script>
-
 					<li class="active"><a href=".">MAIN</a></li>
 					<li><a href="comu">COMU</a></li>
 					<li><a href="hicu">HICU</a></li>

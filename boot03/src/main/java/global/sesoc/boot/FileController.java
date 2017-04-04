@@ -45,6 +45,8 @@ public class FileController {
 		}
 		file.setFile_com("comfiled code");
 		
+		System.out.println("test"+file);
+		
 		if(file.getFilenum() == 0){
 			fileRepository.saveFile(file);		//저장 (Save)
 		}else{

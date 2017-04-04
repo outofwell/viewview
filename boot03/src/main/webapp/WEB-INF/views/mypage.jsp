@@ -16,44 +16,73 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
+			//fileList START======
+			$.ajax({
+					type : "get",
+					url : "fileList",
+					success : function(resp) {
 
-						$('[data-toggle="popover"]').popover();
+						var msg = "<table class='table' id='loadlist'><tr>";
 
-						$
-								.ajax({
-									type : "get",
-									url : "fileList",
-									success : function(resp) {
-
-										var msg = "<table class='table' id='loadlist'><tr>";
-
-										$
-												.each(
-														resp,
-														function(index, item) {
-															//img 주소 : 테스트용 임시 주소!!
-															msg += '<td data-toggle="popover" data-placement="top" title="Popover on top" data-content=""><img src="resources/covers/'
-																	+ item.cover_re
-																	+ '" style="width:60px; height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
-																	+ item.filenum
-																	+ '><br>';
-															msg += '<button class="btn btn-primary btn-xs">'
-																	+ item.file_title
-																	+ '</button></td>';
-															if ((index + 5) % 4 == 0) {
-																msg += "</tr><tr>";
-															}
-														});
-
-										msg += "</tr><table>";
-
-										$("#loader").html(msg);
+						$.each(
+								resp,
+								function(index, item) {
+									//img 주소 : 테스트용 임시 주소!!
+									msg += '<td><img src="resources/covers/'
+											+ item.cover_re
+											+ '" style="width:60px; height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
+											+ item.filenum
+											+ '><br>';
+									msg += '<button class="btn btn-primary btn-xs data-toggle="tooltip" data-placement="top" title="Popover on top" data-content="aeae"">'
+											+ item.file_title
+											+ '</button></td>';
+									if ((index + 5) % 4 == 0) {
+										msg += "</tr><tr>";
 									}
 								});
-					});
+
+						msg += "</tr><table>";
+
+						$("#loader").html(msg);
+					}
+			});
+			//fileList END=====
+				
+			//boardList START=====
+			$.ajax({
+				type : "get",
+				url : "boardList",
+				success : function(resp) {
+
+					var msg = "<table class='table' id='loadlist'><tr>";
+
+					$.each(
+							resp,
+							function(index, item) {
+								//img 주소 : 테스트용 임시 주소!!
+								msg += '<td><img src="resources/covers/'
+										+ item.cover_re
+										+ '" style="width:60px; height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
+										+ item.filenum
+										+ '><br>';
+								msg += '<button class="btn btn-primary btn-xs data-toggle="tooltip" data-placement="top" title="Popover on top" data-content="aeae"">'
+										+ item.file_title
+										+ '</button></td>';
+								if ((index + 5) % 4 == 0) {
+									msg += "</tr><tr>";
+								}
+							});
+
+					msg += "</tr><table>";
+
+					$("#loader").html(msg);
+				}
+			});	
+			//boardList END=====
+	});
+		
+		
 
 	function allowDrop(ev) {
 		ev.preventDefault();
@@ -68,7 +97,7 @@
 		var data = ev.dataTransfer.getData("text");
 		ev.target.appendChild(document.getElementById(data));
 		//alert(data);
-		location.href = 'write?filenum=' + data;
+		location.href = 'dragwrite?filenum=' + data;
 	}
 </script>
 <style>
@@ -123,7 +152,7 @@ td, img {
 				<div class="container">
 					<div class="row">
 						<div class="col-md-6">
-							<h4>My Files</h4>
+							<h4>My Files <button class="btn btn-primary btn-xs">edit</button></h4>
 							<div id="div1" ondragover="allowDrop(event)">
 								<div id="loader"></div>
 							</div>
@@ -171,7 +200,7 @@ td, img {
 								<div class="col-md-3"></div>
 									<div class="checkbox">
 									<label>
-										<input type="checkbox" name="optionsCheckboxes">
+										<input type="checkbox" name="optionsCheckboxes"><br>
 										Unchecked
 									</label>
 									</div>
@@ -189,7 +218,6 @@ td, img {
 		</footer>
 	</div>
 	</div>
-
 </body>
 <style>
 .main-raised {

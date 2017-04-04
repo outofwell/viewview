@@ -1,34 +1,26 @@
 <html>
 <head>
     <title></title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#imgInp").on('change', function(){
-                readURL(this);
-            });
-        });
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-
-              reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-
-    </script>
+    <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		
+	   $(window).scroll(function(){
+	      var scrollHeight = $(window).scrollTop() + $(window).height();
+	      var documentHeight = $(document).height();
+	      
+	      if(scrollHeight == documentHeight) {
+	         for (var i = 0; i < 10; i++) {
+	            $("<h1>"+i+"</h1>").appendTo('body');
+	         }
+	      }
+	   });
+	});
+	
+	</script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <input type='file' id="imgInp" />
-        <img id="blah" src="#" alt="your image" />
-    </form>
+a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
 </body>
 </html>
 
