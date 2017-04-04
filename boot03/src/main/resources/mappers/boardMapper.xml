@@ -8,7 +8,7 @@
 	<insert id="write" parameterType="Board">
 		INSERT INTO cm_board 
 		VALUES
-		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate, #{filenum}, #{share}) 
+		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate, #{filenum}, #{shared}) 
 	</insert>
 	
 	<!-- 글 목록(개인) -->
@@ -17,4 +17,29 @@
 		WHERE USERID=#{userid}
 	</select>
 	
+	<!-- 글 목록(전체) -->
+	<select id="list" resultType="Board">
+		SELECT * FROM cm_board
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE cm_board
+		SET
+			title = #{title}, content = #{cotent}, shared = #{shared}
+		WHERE
+			boardnum = #{boardnum} and userid = #{userid}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE cm_board
+		WHERE
+			boardnum = #{boardnum}
+	</delete>
+	
+	<!-- 글 검색 -->
+	<select id="searchBoard" parameterType="String" resultType="Board">
+	
+	</select>
 </mapper>
