@@ -30,7 +30,7 @@
 		WHERE FILENUM = #{filenum}
 	</update>
 	
-	<!-- 파일 삭제 -->
+	<!-- 파일 삭제  -->
 	<delete id="deleteFile" parameterType="int">
 		DELETE cm_file
 		WHERE FILENUM = #{filenum}
