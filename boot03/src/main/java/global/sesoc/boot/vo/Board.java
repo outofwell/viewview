@@ -13,7 +13,7 @@ public class Board {
 	public Board() {}
 	
 	public Board(int boardnum, String userid, String title, String content, String inputdate, int filenum,
-			String share) {
+			String shared) {
 		super();
 		this.boardnum = boardnum;
 		this.userid = userid;
@@ -83,7 +83,7 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [boardnum=" + boardnum + ", userid=" + userid + ", title=" + title + ", content=" + content
-				+ ", inputdate=" + inputdate + ", filenum=" + filenum + ", share=" + shared + "]";
+				+ ", inputdate=" + inputdate + ", filenum=" + filenum + ", shared=" + shared + "]";
 	}
 	
 }
