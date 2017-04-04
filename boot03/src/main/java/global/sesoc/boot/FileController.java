@@ -42,10 +42,12 @@ public class FileController {
 			String savedFile = FileService.saveFile(upload, uploadPath);
 			file.setCover_ori(upload.getOriginalFilename());
 			file.setCover_re(savedFile);
-		}
+		}else{}
+		
 		file.setFile_com("comfiled code");
 		
 		System.out.println("test"+file);
+		
 		
 		if(file.getFilenum() == 0){
 			fileRepository.saveFile(file);		//저장 (Save)
@@ -73,5 +75,10 @@ public class FileController {
 	}
 	
 	//음악 삭제
-	
+	@RequestMapping(value="/dragdelete", method=RequestMethod.GET)
+	public String delete(int filenum){
+		System.out.println("지울 파일: "+filenum);
+		int result = fileRepository.deleteFile(filenum);
+		return "mypage";
+	}
 }

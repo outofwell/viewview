@@ -63,6 +63,17 @@ public class FileRepository {
 		}
 		return result;
 	}
+
+	public int deleteFile(int filenum) {
+		int result = 0;
+		FileDAO dao = sqlSession.getMapper(FileDAO.class);
+		try {
+			result = dao.deleteFile(filenum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 }

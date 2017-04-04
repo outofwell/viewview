@@ -8,7 +8,7 @@
 	<insert id="write" parameterType="Board">
 		INSERT INTO cm_board 
 		VALUES
-		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate, #{filenum}, #{share}) 
+		(boardnum_seq.nextval, #{userid}, #{title}, #{content}, sysdate, #{filenum}, #{shared}) 
 	</insert>
 	
 	<!-- 글 목록(개인) -->
@@ -16,5 +16,6 @@
 		SELECT * FROM cm_board
 		WHERE USERID=#{userid}
 	</select>
+	
 	
 </mapper>

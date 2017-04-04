@@ -37,6 +37,9 @@ public class HomeController {
 	@Autowired
 	FileRepository fileRepository;
 	
+	@Autowired
+	HttpSession session;
+	
 	//이미지 파일 업로드 경로
 	final String uploadPath = "/covers";
 	
@@ -60,6 +63,9 @@ public class HomeController {
 
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage() {
+		String id = (String)session.getAttribute("loginId");
+		ArrayList<Board> list = boardRepository.boardList(id);
+		session.setAttribute("boardlist", list);
 		return "mypage";
 	}
 

@@ -22,9 +22,7 @@
 					type : "get",
 					url : "fileList",
 					success : function(resp) {
-
 						var msg = "<table class='table' id='loadlist'><tr>";
-
 						$.each(
 								resp,
 								function(index, item) {
@@ -41,67 +39,39 @@
 										msg += "</tr><tr>";
 									}
 								});
-
 						msg += "</tr><table>";
-
 						$("#loader").html(msg);
 					}
 			});
 			//fileList END=====
 				
-			//boardList START=====
-			$.ajax({
-				type : "get",
-				url : "boardList",
-				success : function(resp) {
-
-					var msg = "<table class='table' id='loadlist'><tr>";
-
-					$.each(
-							resp,
-							function(index, item) {
-								//img 주소 : 테스트용 임시 주소!!
-								msg += '<td><img src="resources/covers/'
-										+ item.cover_re
-										+ '" style="width:60px; height:60px; border-radius:100px;" draggable="true" ondragstart="drag(event)" id='
-										+ item.filenum
-										+ '><br>';
-								msg += '<button class="btn btn-primary btn-xs data-toggle="tooltip" data-placement="top" title="Popover on top" data-content="aeae"">'
-										+ item.file_title
-										+ '</button></td>';
-								if ((index + 5) % 4 == 0) {
-									msg += "</tr><tr>";
-								}
-							});
-
-					msg += "</tr><table>";
-
-					$("#loader").html(msg);
-				}
-			});	
-			//boardList END=====
 	});
 		
 		
-
 	function allowDrop(ev) {
 		ev.preventDefault();
 	}
-
+	
 	function drag(ev) {
 		ev.dataTransfer.setData("text", ev.target.id);
 	}
-
+	
 	function drop(ev) {
 		ev.preventDefault();
 		var data = ev.dataTransfer.getData("text");
 		ev.target.appendChild(document.getElementById(data));
-		//alert(data);
 		location.href = 'dragwrite?filenum=' + data;
+	}
+	
+	function drop2(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+		location.href = 'dragdelete?filenum=' + data;
 	}
 </script>
 <style>
-#div1, #div2, #div3 {
+#div1, #div2, #div3, #div4 {
 	float: left;
 	margin: 10px;
 	padding: 10px;
@@ -109,29 +79,28 @@
 	border-radius: 5px;
 	overflow: auto;
 }
-
 #div1 {
 	width: 450px;
 	height: 300px;
 }
 
-#div2 {
-	width: 280px;
-	height: 110px;
-	/*background-image: url("resources/assets/img/bg.jpg");*/
+#div4{
+	background-image: url("resources/covers/trash.png");
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
-#div3 {
+#div2, #div3, #div4 {
 	width: 130px;
 	height: 110px;
+	/*background-image: url("resources/covers/trash.png");*/
 }
-
 #board {
 	border: solid lightgray 1px;
 	padding: 10px;
 	border-radius: 5px;
 }
-
 td, img {
 	text-align: center;
 	margin: auto;
@@ -158,9 +127,10 @@ td, img {
 							</div>
 							<br>
 							<div>
-								<span id="div2"><a href="write">&lt; go write</a></span> <span
-									id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">Drop
-									Here & write</span>
+								<span id="div2"><a href="write">&lt; go write</a></span>
+								<span id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+									Drop & write</span>
+								<span id="div4" ondrop="drop2(event)" ondragover="allowDrop(event)"></span>	
 							</div>
 
 						</div>

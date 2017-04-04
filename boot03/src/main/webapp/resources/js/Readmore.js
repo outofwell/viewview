@@ -18,10 +18,11 @@
         speed: 100,
         collapsedHeight: 60,
         heightMargin: 16,
-        moreLink: '<a href="#"><button class="btn btn-white btn-sm">더보기</button></a>',
-        lessLink: '<a href="#"><button class="btn btn-white btn-sm">접기</button></a>',
+        moreLink: '<a href="#"><button class="btn btn-white btn-sm"><span class="more">more</span></button></a>',
+        lessLink: '<a href="#"><button class="btn btn-white btn-sm" id="less">less</button></a>',
         embedCSS: true,
-        blockCSS: 'display: block; width: 100%;',
+        //blockCSS: 'display: block; width: 100%;',
+        blockCSS: 'display: inline;',
         startOpen: false,
 
         // callbacks

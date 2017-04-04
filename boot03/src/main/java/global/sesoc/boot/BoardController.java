@@ -76,7 +76,7 @@ public class BoardController {
 		return "mypage";
 	}
 	
-	//글 목록 불러오기(개인) (ajax)	---AJAX로 하지말 것
+	//글 목록 불러오기(개인) (ajax)
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public @ResponseBody ArrayList<Board> boardList(){
 		String id = (String)session.getAttribute("loginId");

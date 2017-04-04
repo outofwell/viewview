@@ -221,7 +221,7 @@ $(document).ready(function() {
 			    		<div class="row">
 							<div class="col-md-4">
 							<!-- img 주소 : 테스트용 임시 주소!! -->
-							<img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='resources/assets/img/robot.png'" style="width:100px; height:100px;">
+							<img id="imgView" src="resources/covers/${file.cover_re}" onERROR="this.src='resources/assets/img/robot.png'" style="width:100px; height:100px; border-radius:100px;">
 								<label class="btn btn-primary btn-sm">
 					                get Cover&hellip; <input type="file" style="display: none;" id="imgInp" name="upload" />
 					            </label>

@@ -18,6 +18,9 @@ public interface FileDAO {
 
 	//COMU - SAVE - 파일 덮어쓰기
 	public int updateFile(Files file) throws Exception;
+
+	//MYPAGE - 파일 삭제
+	public int deleteFile(int filenum) throws Exception;
 	
 	
 }
