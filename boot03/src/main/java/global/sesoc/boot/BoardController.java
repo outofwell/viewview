@@ -68,42 +68,52 @@ public class BoardController {
 			//board.setOriginalfile(upload.getOriginalFilename());
 			//board.setSavedfile(savedFile);
 		}else{}
-		if(board.getShare()==null){
-			board.setShare("unshare");
+		if(board.getShared()==null){
+			board.setShared("unshare");
 		}		
 		boardRepository.write(board);
 		//session.setAttribute("message", "등록 완료");
 		return "mypage";
 	}
 	
-	//글 목록 불러오기(개인) (ajax)
+	//글 목록 불러오기(개인) (ajax)	---AJAX로 하지말 것
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public @ResponseBody ArrayList<Board> boardList(){
 		String id = (String)session.getAttribute("loginId");
 		ArrayList<Board> list = boardRepository.boardList(id);
-		System.out.println(list);
 		return list;
 	}
 	
-	//글 수정
+	//글 목록(전체) ArrayList<Board> list() return "shared";
 	
-	//글 삭제
+	//[글 수정] int updateBoard(Board board) return "mypage";
+	
+	//[글 삭제] int deleteBoard(int boardnum) return "mypage";
 
-	//글 검색
+	//[글 검색] Board searchBoard(String search) return "shared";
 	
-	//댓글 등록
+	//[댓글 등록] reply writeReply(Reply reply) return "result";		//(ajax)성공여부 전송
 	
-	//댓글 수정
+	//[댓글 수정] int updateReply(Reply reply) return "result";
 	
-	//댓글 삭제
+	//[댓글 삭제] int deleteReply(int Replynum) return "result";
 	
-	//LIKE
+	
+	
+	
+	//****좋아요 리스트 (랭킹[기간별/전체/] / 특정사용자의LIKE리스트[나/남])
+	
+	//[좋아요 등록] int like(Like like) return "result";
 
-	//LIKE 리스트 (랭킹[기간별/전체/] / 특정사용자의LIKE리스트[나/남])
+	//[좋아요 리스트(랭킹)] ArrayList<Like> likeList() return "result";
+	//[좋아요 리스트(개인)] ArrayList<Like> likeList(String id) return "result";
+	//[좋아요 리스트()] ArrayList<Like> likeList() return "result";
 	
-	//구독
+	//[구독] int subscribe(Subscribe subscribe) return "result";
 	
-	//구독 리스트
+	//[구독 리스트] ArrayList<Subscribe> subscribeList(String id) return "";
+	
+	
 	
 	//+음악 재생
 }

@@ -74,6 +74,7 @@
 	    			<input type="hidden" name="userid" value="${loginId}" />
 		    		<div class="col-md-3" id="center">
 		    		<br>
+		    			<!-- 이미지 주소 : 임시 주소!! -->
 				        <img id="imgView" src="resources/covers/${boardFile.cover_re}" onERROR="this.src='resources/assets/img/robot.png'"/>
 				        <br>
 				   		 <label class="btn btn-primary btn-sm">
@@ -83,7 +84,7 @@
 
 						<div class="togglebutton">
 							<label>
-						    	<input type="checkbox" id="checkbox" value="share" name="share">
+						    	<input type="checkbox" id="checkbox" value="share" name="shared">
 								<span id="shared">unshared</span>
 							</label>
 						</div>

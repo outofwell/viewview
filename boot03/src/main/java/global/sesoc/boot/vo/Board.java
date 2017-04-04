@@ -8,7 +8,7 @@ public class Board {
 	private String content;
 	private String inputdate;
 	private int filenum;
-	private String share;
+	private String shared;
 	
 	public Board() {}
 	
@@ -21,7 +21,7 @@ public class Board {
 		this.content = content;
 		this.inputdate = inputdate;
 		this.filenum = filenum;
-		this.share = share;
+		this.shared = shared;
 	}
 
 	public int getBoardnum() {
@@ -72,18 +72,18 @@ public class Board {
 		this.filenum = filenum;
 	}
 
-	public String getShare() {
-		return share;
+	public String getShared() {
+		return shared;
 	}
 
-	public void setShare(String share) {
-		this.share = share;
+	public void setShared(String shared) {
+		this.shared = shared;
 	}
 
 	@Override
 	public String toString() {
 		return "Board [boardnum=" + boardnum + ", userid=" + userid + ", title=" + title + ", content=" + content
-				+ ", inputdate=" + inputdate + ", filenum=" + filenum + ", share=" + share + "]";
+				+ ", inputdate=" + inputdate + ", filenum=" + filenum + ", share=" + shared + "]";
 	}
 	
 }
