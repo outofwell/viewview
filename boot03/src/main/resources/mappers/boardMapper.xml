@@ -39,7 +39,7 @@
 	</delete>
 	
 	<!-- 글 검색 -->
-	<select id="searchBoard" parameterType="String" resultType="Board">
+<!-- 	<select id="searchBoard" parameterType="String" resultType="Board">
 	
-	</select>
+	</select> -->
 </mapper>
