@@ -85,10 +85,25 @@ public class BoardController {
 	}
 	
 	//글 목록(전체) ArrayList<Board> list() return "shared";
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public String list() {
+		boardRepository.list();
+		return "shared";
+	}
 	
 	//[글 수정] int updateBoard(Board board) return "mypage";
+	@RequestMapping(value="/updateBoard", method = RequestMethod.GET)
+	public String updateBoard(Board board) {
+		boardRepository.updateBoard(board);
+		return "mypage";
+	}
 	
 	//[글 삭제] int deleteBoard(int boardnum) return "mypage";
+	@RequestMapping(value="/deleteBoard", method = RequestMethod.GET)
+	public String deleteBoard(int boardnum) {
+		boardRepository.deleteBoard(boardnum);
+		return "mypage";
+	}
 
 	//[글 검색] Board searchBoard(String search) return "shared";
 	
