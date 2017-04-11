@@ -1,0 +1,247 @@
+options
+{
+  STATIC = false;
+}
+
+PARSER_BEGIN(MyNewGrammar)
+/** Simple brace matcher. */
+package global.sesoc.boot.javaCC;
+import java.util.ArrayList;
+import global.sesoc.boot.service.URLGenerator;
+import global.sesoc.boot.Exception.TempoUnderflowException;
+import global.sesoc.boot.Exception.TempoOverflowException;
+import global.sesoc.boot.Exception.SoundFileNotFoundException;
+import java.io.IOException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+public class MyNewGrammar
+{
+  private int btLocation = 0;
+
+  private String result = "";
+
+  private String url = "";
+
+  private int tempo = 16;
+
+  private double bpm;
+  URLGenerator generator;
+
+  public String getResult()
+  {
+    try
+    {
+      while (readLine())
+      {
+      }
+    }
+    catch (Exception e)
+    {
+      System.out.println(e.getMessage());
+      return e.getMessage();
+    }
+    catch (Error e)
+    {
+      System.out.println(e.getMessage());
+      return e.getMessage();
+    }
+    return result;
+  }
+
+  public void setURLGenerator(URLGenerator generator)
+  {
+    this.generator = generator;
+  }
+
+  public double getLoc(double loc, double dloc)
+  {
+    double where = loc * bpm;
+    double fwhere = where + (bpm / tempo * dloc);
+    return fwhere;
+  }
+
+  public void setBPM(String key) throws UnsupportedAudioFileException, IOException, SoundFileNotFoundException
+  {
+    bpm = generator.getBPM(key);
+  }
+}
+
+PARSER_END(MyNewGrammar)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\r"
+| "\n"
+}
+
+TOKEN :
+{
+  < MELODY : "melody" >
+| < BEAT : "beat" >
+| < BASS : "bass" >
+}
+
+TOKEN :
+{
+  < PIANO : "piano" >
+| < DRUM : "drum" >
+| < GUITARNOTE : "guitarcode" >
+| < GUITARCODE : "guitarnote" >
+}
+
+TOKEN :
+{
+  < TEMPO : "tempo" >
+| < DO : "do" >
+| < LOCATION : "location" >
+| < NUMBER : (< DIGIT >)+ >
+| < DIGIT : [ "0"-"9" ] >
+| < INS : "ins" >
+| < SETNOTE : "note" >
+| < NOTE : ([ "A"-"Z", "a"-"z" ])+ ("#")* (< NUMBER >)* ("m")* >
+}
+
+boolean readLine() throws TempoOverflowException, TempoUnderflowException, UnsupportedAudioFileException, IOException, SoundFileNotFoundException, NumberFormatException :
+{
+  Token number, loops, ins, notes;
+}
+{
+  LOOKAHEAD(2)
+  < TEMPO > number = < NUMBER > ";"
+  {
+    tempo = Integer.parseInt(number.image);
+    if (tempo <= 0)
+    {
+      throw new TempoUnderflowException();
+    }
+    return true;
+  }
+| LOOKAHEAD(2)
+  ins = < INS > notes = < PIANO >
+  {
+    url = notes.image;
+    System.out.println("url=" + url);
+    return true;
+  }
+| LOOKAHEAD(2)
+  ins = < INS > notes = < DRUM >
+  {
+    url = notes.image;
+    System.out.println("url=" + url);
+    return true;
+  }
+| LOOKAHEAD(2)
+  ins = < INS > notes = < GUITARNOTE >
+  {
+    url = notes.image;
+    System.out.println("url=" + url);
+    return true;
+  }
+| LOOKAHEAD(2)
+  ins = < INS > notes = < GUITARCODE >
+  {
+    url = notes.image;
+    System.out.println("url=" + url);
+    return true;
+  }
+| LOOKAHEAD(2)
+  loops = < MELODY > number = < NUMBER >
+  {
+    url = loops.image + number.image;
+    setBPM(url);
+    System.out.println("url=" + url);
+    System.out.println("bpm=" + bpm);
+    return true;
+  }
+| LOOKAHEAD(2)
+  loops = < BEAT > number = < NUMBER >
+  {
+    url = loops.image + number.image;
+    setBPM(url);
+    System.out.println("url=" + url);
+    System.out.println("bpm=" + bpm);
+    return true;
+  }
+| LOOKAHEAD(2)
+  loops = < BASS > number = < NUMBER >
+  {
+    url = loops.image + number.image;
+    setBPM(url);
+    System.out.println("url=" + url);
+    System.out.println("bpm=" + bpm);
+    return true;
+  }
+| "{" 
+  makeSound()
+  {
+    return true;
+  }
+| < EOF >
+  {
+    return false;
+  }
+}
+
+void makeSound() throws TempoOverflowException, SoundFileNotFoundException, NumberFormatException :
+{
+  int location = 0;
+  int loop = 1;
+  Token loc = new Token();
+  Token lop = new Token();
+  Token note = new Token();
+  Token number = new Token();
+  ArrayList < Integer > list = new ArrayList < Integer > ();
+  ArrayList < String > noteList = new ArrayList < String > ();
+}
+{
+  (
+    < DO > lop = < NUMBER > ";"
+    {
+      loop = Integer.parseInt(lop.image);
+      System.out.println("loop=" + loop);
+    }
+  )?
+  (
+    < LOCATION > loc = < NUMBER > ";"
+    {
+      location = Integer.parseInt(loc.image);
+      System.out.println("location=" + location);
+    }
+  )?
+  (
+    < SETNOTE > "(" note = < NOTE > "," number = < NUMBER > ")" ";"
+    {
+      if (tempo < Integer.parseInt(number.image))
+      {
+        throw new TempoOverflowException();
+      }
+      list.add(Integer.parseInt(number.image));
+      noteList.add(note.image);
+    }
+  )*
+  "}"
+  {
+    System.out.println("list.size=" + list.size());
+    for (int i = 0; i < loop; i++)
+    {
+      if (list.size() > 0)
+      {
+        System.out.println("list.size >0");
+        for (int j = 0; j < list.size(); j++)
+        {
+          System.out.println(url + note.image);
+          result += "loadAudio('" + generator.getFilePath(url + noteList.get(j)) + "', " + getLoc(location + i, list.get(j)) + ");\n";
+        }
+      }
+      else
+      {
+        System.out.println(generator.getFilePath(url));
+        result += "loadAudio('" + generator.getFilePath(url) + "', " + getLoc(btLocation, 0) + ");\n";
+        btLocation++;
+      }
+    }
+    return;
+  }
+}
