@@ -26,6 +26,19 @@ public class MyNewGrammar
 
   private double bpm;
   URLGenerator generator;
+  int location = 0;
+  int loop = 1;
+  Token loc = new Token();
+  Token lop = new Token();
+  Token note = new Token();
+  Token number = new Token();
+  Token reverbEffect = new Token();
+  ArrayList < Integer > list = new ArrayList < Integer > ();
+  ArrayList < String > noteList = new ArrayList < String > ();
+  String reverb = "";
+  String delay = "";
+  String low = "";
+  String high = "";
 
   public String getResult()
   {
@@ -37,12 +50,12 @@ public class MyNewGrammar
     }
     catch (Exception e)
     {
-      System.out.println(e.getMessage());
+      e.printStackTrace();
       return e.getMessage();
     }
     catch (Error e)
     {
-      System.out.println(e.getMessage());
+      e.printStackTrace();
       return e.getMessage();
     }
     return result;
@@ -93,6 +106,14 @@ TOKEN :
 
 TOKEN :
 {
+  < REVERB : "reverb" >
+| < DELAY : "delay" >
+| < LOWFILTER : "low" >
+| < HIGHFILTER : "high" >
+}
+
+TOKEN :
+{
   < TEMPO : "tempo" >
 | < DO : "do" >
 | < LOCATION : "location" >
@@ -122,28 +143,24 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
   ins = < INS > notes = < PIANO >
   {
     url = notes.image;
-    System.out.println("url=" + url);
     return true;
   }
 | LOOKAHEAD(2)
   ins = < INS > notes = < DRUM >
   {
     url = notes.image;
-    System.out.println("url=" + url);
     return true;
   }
 | LOOKAHEAD(2)
   ins = < INS > notes = < GUITARNOTE >
   {
     url = notes.image;
-    System.out.println("url=" + url);
     return true;
   }
 | LOOKAHEAD(2)
   ins = < INS > notes = < GUITARCODE >
   {
     url = notes.image;
-    System.out.println("url=" + url);
     return true;
   }
 | LOOKAHEAD(2)
@@ -151,8 +168,6 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
   {
     url = loops.image + number.image;
     setBPM(url);
-    System.out.println("url=" + url);
-    System.out.println("bpm=" + bpm);
     return true;
   }
 | LOOKAHEAD(2)
@@ -160,8 +175,6 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
   {
     url = loops.image + number.image;
     setBPM(url);
-    System.out.println("url=" + url);
-    System.out.println("bpm=" + bpm);
     return true;
   }
 | LOOKAHEAD(2)
@@ -169,13 +182,43 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
   {
     url = loops.image + number.image;
     setBPM(url);
-    System.out.println("url=" + url);
-    System.out.println("bpm=" + bpm);
     return true;
   }
-| "{" 
-  makeSound()
+| "{"
   {
+    location = 0;
+    loop = 1;
+    loc = new Token();
+    lop = new Token();
+    reverbEffect = new Token();
+    note = new Token();
+    number = new Token();
+    list = new ArrayList < Integer > ();
+    noteList = new ArrayList < String > ();
+    reverb = "null";
+    delay = "null";
+    low = "null";
+    high = "null";
+    while (makeSound())
+    {}
+  }
+  "}"
+  {
+    for (int i = 0; i < loop; i++)
+    {
+      if (list.size() > 0)
+      {
+        for (int j = 0; j < list.size(); j++)
+        {
+          result += String.format("loadAudio('%s', %f,%s,%s,%s,%s); \n", generator.getFilePath(url + noteList.get(j)), getLoc(location + i, list.get(j)), reverb, delay, low, high);
+        }
+      }
+      else
+      {
+        result += String.format("loadAudio('%s', %lf); \n", generator.getFilePath(url), getLoc(btLocation, 0));
+        btLocation++;
+      }
+    }
     return true;
   }
 | < EOF >
@@ -184,64 +227,58 @@ boolean readLine() throws TempoOverflowException, TempoUnderflowException, Unsup
   }
 }
 
-void makeSound() throws TempoOverflowException, SoundFileNotFoundException, NumberFormatException :
+boolean makeSound() throws TempoOverflowException, SoundFileNotFoundException, NumberFormatException :
 {
-  int location = 0;
-  int loop = 1;
-  Token loc = new Token();
-  Token lop = new Token();
-  Token note = new Token();
-  Token number = new Token();
-  ArrayList < Integer > list = new ArrayList < Integer > ();
-  ArrayList < String > noteList = new ArrayList < String > ();
 }
 {
-  (
-    < DO > lop = < NUMBER > ";"
-    {
-      loop = Integer.parseInt(lop.image);
-      System.out.println("loop=" + loop);
-    }
-  )?
-  (
-    < LOCATION > loc = < NUMBER > ";"
-    {
-      location = Integer.parseInt(loc.image);
-      System.out.println("location=" + location);
-    }
-  )?
-  (
-    < SETNOTE > "(" note = < NOTE > "," number = < NUMBER > ")" ";"
-    {
-      if (tempo < Integer.parseInt(number.image))
-      {
-        throw new TempoOverflowException();
-      }
-      list.add(Integer.parseInt(number.image));
-      noteList.add(note.image);
-    }
-  )*
-  "}"
+  < DO > lop = < NUMBER > ";"
   {
-    System.out.println("list.size=" + list.size());
-    for (int i = 0; i < loop; i++)
+    loop = Integer.parseInt(lop.image);
+    return true;
+  }
+| 
+  < LOCATION > loc = < NUMBER > ";"
+  {
+    location = Integer.parseInt(loc.image);
+    return true;
+  }
+| 
+  < REVERB > reverbEffect = <NOTE > ";"
+  {
+    reverb = reverbEffect.image;
+    return true;
+  }
+| 
+  < DELAY > number = < NUMBER > ";"
+  {
+    delay = number.image;
+    return true;
+  }
+| 
+  (< LOWFILTER >) number = < NUMBER > ";"
+  {
+    low = number.image;
+    return true;
+  }
+| 
+  (< HIGHFILTER >) number = < NUMBER > ";"
+  {
+    high = number.image;
+    return true;
+  }
+| 
+  < SETNOTE > "(" note = < NOTE > "," number = < NUMBER > ");"
+  {
+    if (tempo < Integer.parseInt(number.image))
     {
-      if (list.size() > 0)
-      {
-        System.out.println("list.size >0");
-        for (int j = 0; j < list.size(); j++)
-        {
-          System.out.println(url + note.image);
-          result += "loadAudio('" + generator.getFilePath(url + noteList.get(j)) + "', " + getLoc(location + i, list.get(j)) + ");\n";
-        }
-      }
-      else
-      {
-        System.out.println(generator.getFilePath(url));
-        result += "loadAudio('" + generator.getFilePath(url) + "', " + getLoc(btLocation, 0) + ");\n";
-        btLocation++;
-      }
+      throw new TempoOverflowException();
     }
-    return;
+    list.add(Integer.parseInt(number.image));
+    noteList.add(note.image);
+    return true;
+  }
+|
+  {
+    return false;
   }
 }

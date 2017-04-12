@@ -20,6 +20,19 @@ public class MyNewGrammar implements MyNewGrammarConstants {
 
   private double bpm;
   URLGenerator generator;
+  int location = 0;
+  int loop = 1;
+  Token loc = new Token();
+  Token lop = new Token();
+  Token note = new Token();
+  Token number = new Token();
+  Token reverbEffect = new Token();
+  ArrayList < Integer > list = new ArrayList < Integer > ();
+  ArrayList < String > noteList = new ArrayList < String > ();
+  String reverb = "";
+  String delay = "";
+  String low = "";
+  String high = "";
 
   public String getResult()
   {
@@ -31,12 +44,12 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     }
     catch (Exception e)
     {
-      System.out.println(e.getMessage());
+      e.printStackTrace();
       return e.getMessage();
     }
     catch (Error e)
     {
-      System.out.println(e.getMessage());
+      e.printStackTrace();
       return e.getMessage();
     }
     return result;
@@ -64,7 +77,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     if (jj_2_1(2)) {
       jj_consume_token(TEMPO);
       number = jj_consume_token(NUMBER);
-      jj_consume_token(20);
+      jj_consume_token(24);
     tempo = Integer.parseInt(number.image);
     if (tempo <= 0)
     {
@@ -75,55 +88,75 @@ public class MyNewGrammar implements MyNewGrammarConstants {
       ins = jj_consume_token(INS);
       notes = jj_consume_token(PIANO);
     url = notes.image;
-    System.out.println("url=" + url);
     {if (true) return true;}
     } else if (jj_2_3(2)) {
       ins = jj_consume_token(INS);
       notes = jj_consume_token(DRUM);
     url = notes.image;
-    System.out.println("url=" + url);
     {if (true) return true;}
     } else if (jj_2_4(2)) {
       ins = jj_consume_token(INS);
       notes = jj_consume_token(GUITARNOTE);
     url = notes.image;
-    System.out.println("url=" + url);
     {if (true) return true;}
     } else if (jj_2_5(2)) {
       ins = jj_consume_token(INS);
       notes = jj_consume_token(GUITARCODE);
     url = notes.image;
-    System.out.println("url=" + url);
     {if (true) return true;}
     } else if (jj_2_6(2)) {
       loops = jj_consume_token(MELODY);
       number = jj_consume_token(NUMBER);
     url = loops.image + number.image;
     setBPM(url);
-    System.out.println("url=" + url);
-    System.out.println("bpm=" + bpm);
     {if (true) return true;}
     } else if (jj_2_7(2)) {
       loops = jj_consume_token(BEAT);
       number = jj_consume_token(NUMBER);
     url = loops.image + number.image;
     setBPM(url);
-    System.out.println("url=" + url);
-    System.out.println("bpm=" + bpm);
     {if (true) return true;}
     } else if (jj_2_8(2)) {
       loops = jj_consume_token(BASS);
       number = jj_consume_token(NUMBER);
     url = loops.image + number.image;
     setBPM(url);
-    System.out.println("url=" + url);
-    System.out.println("bpm=" + bpm);
     {if (true) return true;}
     } else {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 21:
-        jj_consume_token(21);
-        makeSound();
+      case 25:
+        jj_consume_token(25);
+    location = 0;
+    loop = 1;
+    loc = new Token();
+    lop = new Token();
+    reverbEffect = new Token();
+    note = new Token();
+    number = new Token();
+    list = new ArrayList < Integer > ();
+    noteList = new ArrayList < String > ();
+    reverb = "null";
+    delay = "null";
+    low = "null";
+    high = "null";
+    while (makeSound())
+    {}
+        jj_consume_token(26);
+    for (int i = 0; i < loop; i++)
+    {
+      if (list.size() > 0)
+      {
+        for (int j = 0; j < list.size(); j++)
+        {
+          result += String.format("loadAudio('%s', %f,%s,%s,%s,%s); \u005cn", generator.getFilePath(url + noteList.get(j)), getLoc(location + i, list.get(j)), reverb, delay, low, high);
+        }
+      }
+      else
+      {
+        result += String.format("loadAudio('%s', %lf); \u005cn", generator.getFilePath(url), getLoc(btLocation, 0));
+        btLocation++;
+      }
+    }
     {if (true) return true;}
         break;
       case 0:
@@ -139,84 +172,70 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     throw new Error("Missing return statement in function");
   }
 
-  final public void makeSound() throws ParseException, TempoOverflowException, SoundFileNotFoundException, NumberFormatException {
-  int location = 0;
-  int loop = 1;
-  Token loc = new Token();
-  Token lop = new Token();
-  Token note = new Token();
-  Token number = new Token();
-  ArrayList < Integer > list = new ArrayList < Integer > ();
-  ArrayList < String > noteList = new ArrayList < String > ();
+  final public boolean makeSound() throws ParseException, TempoOverflowException, SoundFileNotFoundException, NumberFormatException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case DO:
       jj_consume_token(DO);
       lop = jj_consume_token(NUMBER);
-      jj_consume_token(20);
-      loop = Integer.parseInt(lop.image);
-      System.out.println("loop=" + loop);
+      jj_consume_token(24);
+    loop = Integer.parseInt(lop.image);
+    {if (true) return true;}
       break;
-    default:
-      jj_la1[1] = jj_gen;
-      ;
-    }
-    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case LOCATION:
       jj_consume_token(LOCATION);
       loc = jj_consume_token(NUMBER);
-      jj_consume_token(20);
-      location = Integer.parseInt(loc.image);
-      System.out.println("location=" + location);
+      jj_consume_token(24);
+    location = Integer.parseInt(loc.image);
+    {if (true) return true;}
       break;
-    default:
-      jj_la1[2] = jj_gen;
-      ;
-    }
-    label_1:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case SETNOTE:
-        ;
-        break;
-      default:
-        jj_la1[3] = jj_gen;
-        break label_1;
-      }
-      jj_consume_token(SETNOTE);
-      jj_consume_token(22);
-      note = jj_consume_token(NOTE);
-      jj_consume_token(23);
+    case REVERB:
+      jj_consume_token(REVERB);
+      reverbEffect = jj_consume_token(NOTE);
+      jj_consume_token(24);
+    reverb = reverbEffect.image;
+    {if (true) return true;}
+      break;
+    case DELAY:
+      jj_consume_token(DELAY);
       number = jj_consume_token(NUMBER);
       jj_consume_token(24);
-      jj_consume_token(20);
-      if (tempo < Integer.parseInt(number.image))
-      {
-        {if (true) throw new TempoOverflowException();}
-      }
-      list.add(Integer.parseInt(number.image));
-      noteList.add(note.image);
-    }
-    jj_consume_token(25);
-    System.out.println("list.size=" + list.size());
-    for (int i = 0; i < loop; i++)
+    delay = number.image;
+    {if (true) return true;}
+      break;
+    case LOWFILTER:
+      jj_consume_token(LOWFILTER);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(24);
+    low = number.image;
+    {if (true) return true;}
+      break;
+    case HIGHFILTER:
+      jj_consume_token(HIGHFILTER);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(24);
+    high = number.image;
+    {if (true) return true;}
+      break;
+    case SETNOTE:
+      jj_consume_token(SETNOTE);
+      jj_consume_token(27);
+      note = jj_consume_token(NOTE);
+      jj_consume_token(28);
+      number = jj_consume_token(NUMBER);
+      jj_consume_token(29);
+    if (tempo < Integer.parseInt(number.image))
     {
-      if (list.size() > 0)
-      {
-        System.out.println("list.size >0");
-        for (int j = 0; j < list.size(); j++)
-        {
-          System.out.println(url + note.image);
-          result += "loadAudio('" + generator.getFilePath(url + noteList.get(j)) + "', " + getLoc(location + i, list.get(j)) + ");\u005cn";
-        }
-      }
-      else
-      {
-        System.out.println(generator.getFilePath(url));
-        result += "loadAudio('" + generator.getFilePath(url) + "', " + getLoc(btLocation, 0) + ");\u005cn";
-        btLocation++;
-      }
+      {if (true) throw new TempoOverflowException();}
     }
-    {if (true) return;}
+    list.add(Integer.parseInt(number.image));
+    noteList.add(note.image);
+    {if (true) return true;}
+      break;
+    default:
+      jj_la1[1] = jj_gen;
+    {if (true) return false;}
+    }
+    throw new Error("Missing return statement in function");
   }
 
   private boolean jj_2_1(int xla) {
@@ -275,9 +294,21 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     finally { jj_save(7, xla); }
   }
 
+  private boolean jj_3_5() {
+    if (jj_scan_token(INS)) return true;
+    if (jj_scan_token(GUITARCODE)) return true;
+    return false;
+  }
+
   private boolean jj_3_3() {
     if (jj_scan_token(INS)) return true;
     if (jj_scan_token(DRUM)) return true;
+    return false;
+  }
+
+  private boolean jj_3_8() {
+    if (jj_scan_token(BASS)) return true;
+    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
@@ -287,21 +318,9 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     return false;
   }
 
-  private boolean jj_3_7() {
-    if (jj_scan_token(BEAT)) return true;
-    if (jj_scan_token(NUMBER)) return true;
-    return false;
-  }
-
   private boolean jj_3_4() {
     if (jj_scan_token(INS)) return true;
     if (jj_scan_token(GUITARNOTE)) return true;
-    return false;
-  }
-
-  private boolean jj_3_8() {
-    if (jj_scan_token(BASS)) return true;
-    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
@@ -317,9 +336,9 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     return false;
   }
 
-  private boolean jj_3_5() {
-    if (jj_scan_token(INS)) return true;
-    if (jj_scan_token(GUITARCODE)) return true;
+  private boolean jj_3_7() {
+    if (jj_scan_token(BEAT)) return true;
+    if (jj_scan_token(NUMBER)) return true;
     return false;
   }
 
@@ -334,13 +353,13 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   private Token jj_scanpos, jj_lastpos;
   private int jj_la;
   private int jj_gen;
-  final private int[] jj_la1 = new int[4];
+  final private int[] jj_la1 = new int[2];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x200001,0x2000,0x4000,0x40000,};
+      jj_la1_0 = new int[] {0x2000001,0x46f000,};
    }
   final private JJCalls[] jj_2_rtns = new JJCalls[8];
   private boolean jj_rescan = false;
@@ -357,7 +376,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -372,7 +391,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -383,7 +402,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -394,7 +413,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -404,7 +423,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -414,7 +433,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -526,12 +545,12 @@ public class MyNewGrammar implements MyNewGrammarConstants {
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[26];
+    boolean[] la1tokens = new boolean[30];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -540,7 +559,7 @@ public class MyNewGrammar implements MyNewGrammarConstants {
         }
       }
     }
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < 30; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

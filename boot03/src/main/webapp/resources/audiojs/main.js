@@ -24,6 +24,11 @@ var audioContext;
 var source;
 var analyser;
 var xhr;
+var reverb;
+var delay;
+var lowfilter;
+var highfilter;
+var gainNode;
 var started = false;
 
 $(document).ready(function() {
@@ -44,6 +49,7 @@ $(document).ready(function() {
 			'Find out how to get it <a href="http://get.webgl.org/">here</a>, or try restarting your browser.');
 	} else {
 		init();
+
 	}
 
 });
@@ -70,40 +76,95 @@ function init() {
 	};
 
 	//add stats
-	stats = new Stats();
+	/*stats = new Stats();
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.top = '0px';
 	container.appendChild(stats.domElement);
-
+	 */
 	// init listeners
 	audioContext = new window.AudioContext();
 	$(document).mousemove(onDocumentMouseMove);
 	$(window).resize(onWindowResize);
-	var scriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 	createAnalyser();
 	startViz();
+	loadAudio('loops/bass/1.wav', 0.0, 'effect/Vacuum.wav', null, null, null);
 	//onWindowResize(null);
 
 }
 
-function loadAudio(url, time) {
+function createEffect() {
+	reverb = audioContext.createConvolver();
+	delay = audioContext.createDelay(5.0);
+	lowfilter = audioContext.createBiquadFilter();
+	lowfilter.type = "lowpass";
+	highfilter = audioContext.createBiquadFilter();
+	highfilter.type = "highpass";
+}
+
+function loadAudio(url, time, hasReverb, hasDelay, hasLowFilter, hasHighFilter) {
+	createEffect();
 	var req = new XMLHttpRequest();
 	req.open('GET', url, true);
 	req.responseType = 'arraybuffer';
-	req.onload = function() {
+	var array = [];
+	if (hasReverb) {
+		var irRRequest = new XMLHttpRequest();
+		irRRequest.open("GET", hasReverb);
+		irRRequest.responseType = "arraybuffer";
+		irRRequest.onload = function() {
+			audioContext.decodeAudioData(irRRequest.response,
+				function(buffer) {
+					reverb.buffer = buffer;
+					req.send();
+				});
+		}
+		irRRequest.send();
+	} else {
+		req.send();
+	}
+	req.onload = function() { // sound source loading
 		audioContext.decodeAudioData(req.response, function(buffer) {
 			source = audioContext.createBufferSource(); // creates a sound source
 			source.buffer = buffer;
-			source.connect(analyser);
-			source.connect(audioContext.destination);
+			if (hasReverb || hasDelay || hasLowFilter || hasHighFilter) {
+				if (hasReverb) {
+					array.push(reverb);
+				}
+				if (hasDelay) {
+					delay.delayTime.value = parseFloat(hasDelay);
+					array.push(delay);
+				}
+				if (hasLowFilter) {
+					lowfilter.frequency.value = parseFloat(hasLowFilter);
+					lowfilter.gain.value = 100;
+					array.push(lowfilter);
+				}
+				if (hasHighFilter) {
+					highfilter.frequency.value = parseFloat(hasHighFilter);
+					highfilter.gain.value = 100;
+					array.push(highfilter);
+				}
+				var firstConnect = array.pop();
+				source.connect(firstConnect);
+				var from = firstConnect;
+				var to;
+				while (array.length > 0) {
+					to = array.pop();
+					from.connect(to);
+					from = to;
+				}
+				from.connect(analyser);
+				analyser.connect(audioContext.destination);
+			} else {
+				source.connect(analyser);
+				analyser.connect(audioContext.destination);
+			}
 			var playTime = audioContext.currentTime + time + 1;
-			console.log("time= " + time);
-			console.log("curTime= " + audioContext.currentTime);
 			source.start(playTime);
-		})
-	};
-	req.send();
+		});
+	}
 }
+
 
 function onDocumentMouseMove(event) {
 	mouseX = (event.clientX - windowHalfX);
@@ -121,7 +182,7 @@ function onWindowResize(event) {
 function animate() {
 	requestAnimationFrame(animate);
 	render();
-	stats.update();
+//stats.update();
 }
 
 function render() {
